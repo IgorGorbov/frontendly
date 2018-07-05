@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>React и ES6 - Часть 1, Введение | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Это первая статья из серии, в которой мы будем рассматривать использование React с ECMAScript 6.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-11-d-react-i-es6-chast-1-vvedenie/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-11-d-react-i-es6-chast-1-vvedenie/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">11/05/2018</span>
+
+							<h1>React и ES6 - Часть 1, Введение</h1>
+
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-11-d-react-i-es6-chast-1-vvedenie/1.jpg" data-title="React и ES6 - Часть 1, Введение">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">React и ES6 - Часть 1, Введение</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>Другие части вы можете найти по ссылкам:
+    <ul>
+        <li>
+            <a href="blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7">Часть 2, Классы React и инициализаторы свойств ES7</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react">Часть 3, Биндинг методов в классах React</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">Часть 4, Миксины React использующие ES6</a>
+        </li>
+    </ul>
+</blockquote>
+
+<p>В версии ReactJS v0.13.0 Beta 1 появилась совместимость ECMAScript 6 с компонентами React. Какие преимущества это дало разработчикам?</p>
+
+<p>Что ж, ECMAScript 6 (или ECMAScript 2015) — это новый стандарт JavaScript, принесший множество новых особенностей в мир JavaScript. Таких как классы, стрелочные функции, rest параметры, итераторы, генераторы и многое, многое другое.</p>
+
+<p>Это здорово, но вгляните <a href="http://kangax.github.io/compat-table/es6/">на таблицу совместимости ES6</a>. Выглядит так, будто пройдут годы, пока мы сможем использовать ES6 в браузере (помните ситуацию с поддержкой ES5?).</p>
+
+<p>К счастью, это не совсем так. Вам не придется ждать, пока разработчики браузеров реализуют поддержку ECMAScript 6 в браузерах. Существуют инструменты, называемые трансляторами, конвертирующие код, написанный на ES6, в ES5-совместимый код. Аналогично тому, как CoffeeScript транслируется в JavaScript.</p>
+
+<p>Одно из таких решений называется <a href="https://babeljs.io/">Babel</a>, действительно удивительный инструмент. Большое спасибо разработчикам. Что хорошо, Babel поддерживает огромное число различных фреймворков, систем сборки, тестовых фреймворков, шаблонизаторов —
+    <a href="https://babeljs.io/docs/setup/">посмотрите здесь</a>.</p>
+
+<p>Чтобы получить краткое представление о том, как работает Babel, рассмотрим пример. Скажем, у нас есть следующий код:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">evenNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span></code></pre></figure>
+
+<p>После запуска Babel получим следующий код:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">evenNumbers</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Аналогичные манипуляции применяются и к другим конструкциям ES6.</p>
+
+<h3>Подготовка окружения разработки</h3>
+
+<p>Для того, чтобы настроить неперерывную работу Babel, мы будем использовать Gulp. Это сборщик основан на node.js и может упростить вам жизнь, автоматизируя рутинные задачи. Если вы слышали о Grunt, то Gulp — это почти то же самое.</p>
+
+<p></p>
+
+
+<ul>
+    <li>Очевидно, вам понадобится Node.js. Установите его в вашей системе, если он еще не установлен.
+       </li>
+    <li> Далее, вам нужно установить Gulp глобально: npm install -g gulp.
+        Перейдите в директорию с проектом. Инициализируйте файл package.json с помощью команды npm init.
+        </li>
+    <li>Запустите команду npm install --save react@0.13.x. Эта команда установит react в директорию node_modules и сохранит в качестве зависимости в package.json.
+        </li>
+    <li>Запустите команду npm install --save-dev gulp browserify babelify vinyl-source-stream babel-preset-es2015 babel-preset-react. Эта команда установит зависимости разработки.</li>
+</ul>
+
+<h3 id="gulp">Создание gulpfile.js</h3>
+
+<p>Создайте файл gulpfile.js в корневой директории проекта со следующим содержимым:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">babelify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'babelify'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'vinyl-source-stream'</span><span class="p">);</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'build'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">browserify</span><span class="p">({</span><span class="na">entries</span><span class="p">:</span> <span class="s1">'./app.jsx'</span><span class="p">,</span> <span class="na">extensions</span><span class="p">:</span> <span class="p">[</span><span class="s1">'.jsx'</span><span class="p">],</span> <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="s1">'babelify'</span><span class="p">,</span> <span class="p">{</span><span class="na">presets</span><span class="p">:</span> <span class="p">[</span><span class="s1">'es2015'</span><span class="p">,</span> <span class="s1">'react'</span><span class="p">]})</span>
+        <span class="p">.</span><span class="nx">bundle</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">source</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'watch'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'*.jsx'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'watch'</span><span class="p">]);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Надеюсь, некоторые объяснения будут полезны.</p>
+<p>Строки 1-4. Мы подключаем необходимые node.js модули и инициализируем соответствующие переменные.
+</p>
+<p>Строка 6. Объявляем задачу gulp с именем build, которая будет запускаться по команде gulp build.
+</p>
+<p>Строка 7. Начинаем описывать, что должна делать команда. Мы говорим Gulp, что нужно использовать Browserify для app.jsx. В дополнение, мы включили режим отладки, который будет полезен при разработке.
+</p>
+<p>Строки 8-11. Мы добавили трансформацию с помощью Babelify. Это позволит сконвертировать код на ECMAScript 6 в ECMAScript 5. Результат будем выводить в файл dist/bundle.js. Также мы подключили необходимые пресеты Babel.
+</p>
+<p>Строки 14-16. Мы определили задачу с именем watch, которую будем запускать по команде gulp watch. Эта задача будет запускать gulp build при каждом изменении jsx файлов.
+</p>
+<p>Строка 18. Мы определили задачу gulp, которая будет запускаться по команде gulp. Эта команда просто выполняет задачу watch.
+</p>
+
+<p>Теперь ваш воркфлоу будет состоять из ввода команды gulp и нажатия клавиши Enter. Сборщик будет наблюдать за изменениями в компонентах React и пересобирать файлы непрерывно.</p>
+
+
+<h3>JSX и Babel</h3>
+
+<p>Вы, возможно, уже заметили, что мы использовали расширение .jsx вместо .js. JSX — это расширение синтаксиса JavaScript, разработанное командой ReactJS. Этот формат используется для упрощения написания компонентов ReactJS.</p>
+
+<h3>Первый компонент React на ECMAScript 6</h3>
+
+<p>Пришло время создать наш первый очень простой компонент на ES6. Добавим файл с именем Hello-world.jsx в корень проекта:</p>
+
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">HelloWorld</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="k">from</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">phrase</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/h1&gt;;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span></code></pre></figure>
+
+<p>Некоторые объяснения:
+</p>
+<ul>
+    <li>Строка 1. Мы подключаем библиотеку React и инициализируем переменную React.
+    </li>
+    <li>Строки 3-8. Для создания компонента React используем класс ES6, наследующий от класса React.Component. Мы добавили простой метод render, выводящий тег h1, содержащий свойство phrase.
+    </li>
+    <li>Строка 9. Экспортируем созданный компонент с помощью export default HelloWorld.
+    </li>
+</ul>
+
+<p>Чтобы упростить понимание, я добавил код такого же компонента, но написанного без использования ES6 классов:
+</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+    <span class="na">render</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="k">from</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">phrase</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/h1&gt;</span><span class="err">
+</span>        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">HelloWorld</span><span class="p">;</span></code></pre></figure>
+
+<h3>Обертка</h3>
+
+<p>Завершим наш простой пример. Создайте файл с имененм app.jsx:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">HelloWorld</span> <span class="k">from</span> <span class="s1">'./hello-world'</span><span class="p">;</span>
+
+<span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">HelloWorld</span> <span class="nx">phrase</span><span class="o">=</span><span class="s2">"ES6"</span><span class="o">/&gt;</span><span class="p">,</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>Мы импортируем компонент HelloWorld, созданный на предыдущем шаге и передаем свойство phrase.
+</p>
+<p>Далее, создайте файл index.html:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>ReactJS and ES6<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"dist/bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<p>Теперь запустите команду gulp в терминале (она создаст файл dist/bundle.js) и откройте HTML файл в браузере.
+    Вы должны увидеть то же, что на изображении ниже.</p>
+
+<img src="images/javascript/2018/2018-05-11-d-react-i-es6-chast-1-vvedenie/react-1.png" alt="react-1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie.html" data-media="images/javascript/2018/2018-05-11-d-react-i-es6-chast-1-vvedenie/1.jpg" data-title="React и ES6 - Часть 1, Введение">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

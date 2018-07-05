@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Обещания (promises) в JavaScript | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Про обещания (promises) уже много написано. Эта статья — просто попытка собрать наиболее необходимые на практике приемы использования обещаний с достаточно подробными пояснениями того, как это работает.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-08-javascript-promise/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-08-javascript-promise/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">08/05/2018</span>
+
+							<h1>Обещания (promises) в JavaScript</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-08-javascript-promise.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-08-javascript-promise.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-08-javascript-promise/1.jpg" data-title="Обещания (promises) в JavaScript">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">Обещания (promises) в JavaScript</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>Обещания (promises) — это объекты, позволяющие упорядочить выполнение асинхронных вызовов.</blockquote>
+<p>Асинхронный вызов — это вызов функции, при котором выполнение основного потока кода не дожидается завершения вызова. Например, выполнение http-запроса не прерывает выполнение основного потока. То есть выполняется запрос, и сразу, не дожидаясь его завершения, выполняется код следующий за этим вызовом, а результат http-запроса обрабатывается после его завершения функцией обратного вызова (callback-функцией).
+</p>
+
+<p>Далее будем последовательно разбираться с функционированием обещаний. Пока будем исходить из того, что у нас уже есть объект-обещание выполнить некий асинхронный вызов. О том, откуда берутся обещания и, как их сформировать самому, поговорим чуть позже.
+</p>
+
+
+<p>1. Обещания предоставляют механизм, позволяющий управлять последовательностью асинхронных вызовов. Иными словами, обещание — это просто обертка над асинхронным вызовом. Обещание может разрешиться успешно или завершиться с ошибкой. Суть механизма в следующем. Каждое обещание предоставляет две функции: then() и catch(). В качестве аргумента в каждую из функций передается функция обратного вызова. Callback-функция в then вызывается в случае успешного разрешения обещания, а в catch — в случае ошибки:
+</p>
+
+<pre><code class="javascript">
+promise.then(function(result){
+  // Вызывается после успешного разрешения обещания
+}).catch(function(error){
+  // Вызывается в случае ошибки
+});
+</code></pre>
+
+<p>2. Следующий момент, который нужно уяснить. Обещание разрешается только один раз. Иными словами асинхронный вызов, который происходит внутри обещания выполняется только один раз. В дальнейшем обещание просто возвращает сохраненный результат асинхронного вызова, больше его не выполняя. Например, если мы имеем некоторое обещание promise, то:</p>
+
+<pre><code>
+  // Первое разрешение обещания
+promise.then(function(result){
+  // При разрешении обещания происходит асинхронный вызов,
+  // результат которого передается в эту функцию
+});
+// Повторное разрешение того же обещания
+promise.then(function(result){
+  // Теперь уже асинхронный вызов не выполняется.
+  // В эту функцию передается сохраненный результат
+  // разрешения обещания
+});
+</code></pre>
+
+<p>3. Функции then() и catch() возвращают обещания. Таким образом, можно выстраивать цепочки обещаний. При этом результат, который возвращает callback-функция в then(), передается в качестве аргумента на вход callback-функции последующего then(). А аргумент вызова throw(message) передается в качестве аргумента callback-функции в catch():</p>
+
+<pre><code>
+  promise.then(function(result){
+  // Обработка разрешения обещания (код пропущен)
+  return result1; // Возвращаем результат обработки обещания
+}).then(function(result){
+  // Аргумент result в этой функции имеет значение result1,
+  // переданный из предыдущего вызова
+  if(condition){
+    throw("Error message");
+  }
+}).catch(function(error){
+  // Если в предыдущем вызове условие выполнится,
+  // то сработает исключение, управление будет передано в эту
+  // функцию и переменная error будет иметь значение "Error message"
+});
+</code></pre>
+
+<p>4. В качестве результата callback-функция в then() может возвращать не только какое-либо значение, но и другое обещание. При этом в следующий вызов then() будет передан результат разрешения этого обещания:</p>
+
+<pre><code>
+  promise1.then(function(result1){
+  return promise2.then(function(result2){
+    // Какие-то действия
+    return result3;
+  });
+}).then(function(result){
+  // Значение аргумента result в этой функции будет равно result3
+}).catch(function(error){
+  // Обработка ошибок
+});
+</code></pre>
+
+<p>5. Можно то же самое сделать, выстроив разрешение обещаний в одну линейную цепочку без вложений:</p>
+
+<pre><code>
+  promise1.then(function(result1){
+  return promise2;
+}).then(function(result2){
+  // Какие-то действия
+  return result3;
+}).then(function(result){
+  // Значение аргумента result в этой функции будет равно result3
+}).catch(function(error){
+  // Обработка ошибок
+});
+</code></pre>
+
+<p>Обратите внимание на то, что каждая цепочка обещаний заканчивается вызовом catch(). Если этого не делать, то возникающие ошибки будут пропадать в недрах обещаний и, тогда невозможно будет установить, где произошла ошибка.</p>
+
+<h3>Подводим итог</h3>
+
+<p>Если необходимо выполнить последовательность асинхронных вызовов (то есть, когда каждый следующий вызов должен выполниться строго после завершения предыдущего), то эти асинхронные вызовы необходимо выстроить в цепочку обещаний</p>
+
+<h3>Откуда берутся обещания</h3>
+
+<p>Обещания можно получить двумя способами: либо функции используемой библиотеки могут возвращать готовые обещания, либо можно самостоятельно оборачивать в обещания асинхронные вызовы функций, не поддерживающих обещания (промисификация). Рассмотрим каждый вариант отдельно.</p>
+
+<h3>Обещания библиотечных функций</h3>
+
+<p>Многие современные библиотеки поддерживают работу с обещаниями. О том, поддерживает библиотека обещания или нет, можно узнать из документации. Некоторые библиотеки поддерживают оба варианта работы с асинхронными вызовами: функции обратного вызова и обещания.</p>
+
+<p>Чтобы запустить параллельное выполнение нескольких независимых действий нужно использовать вызов:</p>
+
+<pre><code>
+  Promise.all([
+  promise_1,
+  promise_2,
+  ...,
+  promise_n
+]).then(function(results){
+  // Какие-то действия после завершения
+});
+</code></pre>
+
+<p>То есть, на вход функции Promise.all передается массив обещаний. Все обещания в этом случае запускаются на выполнение сразу. Функция Promise.all возвращает обещание выполнить все обещания, поэтому вызов then() в этом случае срабатывает после выполнения всех обещаний массива. Параметр results, который передается на вход функции в then(), является массивом результатов работы обещаний в той последовательности, в которой они передавались на вход Promise.all.</p>
+
+<h3>Выстраивание цепочки обещаний в цикле for</h3>
+
+<p>Предположим, что некая функция doSomething() возвращает обещание выполнить какое-то асинхронное действие, и нам надо выполнить это действие последовательно n раз. Пусть само обещание возвращает некий строковый результат result, который используется при следующем асинхронном вызове. Также допустим, что первый вызов делается с пустой строкой. В этом случае выстраивание цепочки обещаний делается так:</p>
+
+<pre><code>
+  // Устанавливаем начальное значение цепочки обещаний
+var actionsChain = Promise.resolve("");
+// В цикле составляем цепочку обещаний
+for(var i = 0; i < n; i++){
+  actionsChain = actionsChain.then(function(result){
+    return doSomething(result);
+  });
+}
+// Определяем, что будем делать после завершения
+// цепочки асинхронных действий и обработчик ошибок
+actionsChain.then(function(result){
+  // Код, который выполняется после завершения цепочки действий
+}).catch(function(error){
+  // Обработка ошибок
+});
+</code></pre>
+
+<h3>Пример использования обещаний</h3>
+
+<p>В качестве более сложного примера применения обещаний рассмотрим фрагмент кода сервиса генерации уникальных идентификаторов. Суть работы сервиса очень проста: на каждый запрос GET к сервису он вычисляет и возвращает очередной уникальный идентификатор. Однако, учитывая то, что одновременно к сервису может быть направлено несколько конкурирующих запросов, возникает задача выстраивания этих запросов в очередь (цепочку) обещаний для последующего выполнения</p>
+
+<p>Код самого сервера выглядит так:</p>
+<pre><code>
+  // Создаем HTTP-сервер
+var server = http.createServer(processRequest);
+// Перед остановкой сервера закрываем соединение с redis
+server.on('close', function(){
+  storage.quit();
+});
+// Запускаем сервер
+server.listen(config.port, config.host);
+console.log('Service is listening '+config.host+':'+config.port);
+</code></pre>
+
+<p>Это стандартный код http-сервера, написанного на node.js. Функция processRequest — обработчик http-запроса. Сам сервис использует для хранения своего состояния хранилище redis. Механизм сохранения состояния в redis не имеет значения для понимания данного примера, поэтому рассматриваться не будет. Но при завершении работы сервера нам необходимо закрыть соединение с redis, что и отражено в коде выше. Важно только следующее: при каждом запросе вызывается функция processRequest. Очередь запросов представляет собой обещание requestQueue. Рассмотрим теперь сам код:
+</p>
+
+
+
+<p>Для вычисления самого идентификатора используется функция calcUUID(), которая возвращает обещание вычислить уникальный идентификатор. Код этой функции рассматривать не будем, так как для понимания этого примера он не нужен. При получении запроса к очереди обработки добавляется обещание вычислить очередной идентификатор. Таким образом, несколько конкурирующих запросов выстраиваются в одну цепочку, где вычисление каждого следующего идентификатора начинается после вычисления предыдущего.
+</p>
+
+<h3>Заключение</h3>
+
+<p>Таким образом, обещания позволяют контролировать процесс выполнения асинхронных вызовов, делая при этом код читаемым и доступным для понимания. Необходимо только научиться использовать механизмы обещаний и шаблоны программирования с использованием обещаний.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-08-javascript-promise.html" data-media="images/javascript/2018/2018-05-08-javascript-promise/1.jpg" data-title="Обещания (promises) в JavaScript">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Введение в каррирование в JavaScript | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Каррирование — очень интересная техника, позволяющая сильно упростить использование частичного применения на практике. Многие путают эти понятия, но, как вы увидите далее, они обозначают совершенно разные вещи.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-20-vvedenie-v-karrirovanie-v-javascript/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-20-vvedenie-v-karrirovanie-v-javascript/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">20/05/2018</span>
+
+							<h1>Введение в каррирование в JavaScript</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-20-vvedenie-v-karrirovanie-v-javascript/1.jpg" data-title="Введение в каррирование в JavaScript">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">Введение в каррирование в JavaScript</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+    Каррирование или частичное применение это одна из техник функционального программирования, которая может показаться странной людям, знакомым с более традиционными способами написания JavaScript. Но при правильном применении каррирование действительно способно сделать ваш JavaScript более читаемым.
+</blockquote>
+
+<h3>Читаемость и гибкость</h3>
+
+<p>Одним из преимуществ функционального JavaScript является короткий и сжатый код, позволяющий использовать минимум строк с меньшим повторением. Иногда это достигается ценой читаемости — пока вы незнакомы с тем, как работает функциональное программирование, написанный таким образом код будет сложнее читать и понимать.</p>
+
+<p>Если вы сталкивались с термином каррирование ранее, но не знали, что он означает, то вы можете думать об этом как об экзотической и специфичной технике, о которой вам не нужно беспокоиться. Но на самом деле каррирование это очень простая концепция, решающая знакомые проблемы при работе с аргументами функции, открывая много гибких опций для разработчика.</p>
+
+<h3>Что такое каррирование?</h3>
+<p>Говоря кратко, каррирование это способ конструирования функций, позволяющий частичное применение аргументов функции. Это означает, что вы можете передать все аргументы, ожидаемые функцией и получить результат или передать часть этих аргументов и получить обратно функцию, ожидающую остальные аргументы. Все просто на самом деле.</p>
+
+<p>Чтобы дать вам понимание, как это должно работать, давайте создадим нашу первую каррированную функцию в JavaScript, используя знакомый синтаксис для построения нужной нам функциональности с использованием каррирования. В качестве примера представим функцию, приветствующую кого-нибудь по имени. Мы все знаем, как создать простую приветствующую функцию, принимающую имя и приветствие и выводящую в консоль приветствие с именем:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">greeting</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">greet</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello, Heidi"</span></code></pre></figure>
+
+<p>Эта функция для корректной работы ожидает в качестве аргументов имя и приветствие. Но мы можем переписать ее, используя вложенное каррирование так, что базовая функция будет требовать только приветствие и возвращать другую функцию, принимающую имя человека, которого мы хотим приветствовать.</p>
+
+<h3>Наше первое карри</h3>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greetCurried</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">};</span></code></pre></figure>
+
+
+<p>Это небольшое улучшение к способу написания функции позволит нам создать новую функцию для любого типа приветствия и передать этой новой функции имя человека, которого мы хотим приветствовать:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greetHello</span> <span class="o">=</span> <span class="nx">greetCurried</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">);</span>
+<span class="nx">greetHello</span><span class="p">(</span><span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello, Heidi"</span>
+<span class="nx">greetHello</span><span class="p">(</span><span class="s2">"Eddie"</span><span class="p">);</span> <span class="c1">//"Hello, Eddie"</span></code></pre></figure>
+
+<p>Мы также напрямую вызываем оригинальную каррированную функцию, просто передавая каждый из параметров в отдельных круглых скобках один за другим:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">greetCurried</span><span class="p">(</span><span class="s2">"Hi there"</span><span class="p">)(</span><span class="s2">"Howard"</span><span class="p">);</span> <span class="c1">//"Hi there, Howard"</span></code></pre></figure>
+
+<h3>Каррируем все</h3>
+
+<p>Хорошая новость состоит в том, что изучив то, как можно модифицировать нашу традиционную функцию и используя этот подход для работы с аргументами, мы можем это делать с любым количеством аргументов.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greetDeeplyCurried</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">greeting</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">separator</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">emphasis</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="nx">separator</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="nx">emphasis</span><span class="p">);</span>
+            <span class="p">};</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>У нас та же самая гибкость при работе с четырьмя аргументами, что и ранее при работе с двумя. Не имеет значения, насколько глубоко вложение, мы можем создавать новые функции для поздравления любого количества людей всеми доступными способами:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greetAwkwardly</span> <span class="o">=</span> <span class="nx">greetDeeplyCurried</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)(</span><span class="s2">"..."</span><span class="p">)(</span><span class="s2">"?"</span><span class="p">);</span>
+<span class="nx">greetAwkwardly</span><span class="p">(</span><span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello...Heidi?"</span>
+<span class="nx">greetAwkwardly</span><span class="p">(</span><span class="s2">"Eddie"</span><span class="p">);</span> <span class="c1">//"Hello...Eddie?"</span></code></pre></figure>
+
+<p>Чего же больше, мы можем передавать столько параметров, сколько хотим при создании вариантов новых функций, которые способны принимать соответствующее количество дополнительных параметров, каждый из которых передается в отдельных скобках:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">sayHello</span> <span class="o">=</span> <span class="nx">greetDeeplyCurried</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)(</span><span class="s2">", "</span><span class="p">);</span>
+<span class="nx">sayHello</span><span class="p">(</span><span class="s2">"."</span><span class="p">)(</span><span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello, Heidi."</span>
+<span class="nx">sayHello</span><span class="p">(</span><span class="s2">"."</span><span class="p">)(</span><span class="s2">"Eddie"</span><span class="p">);</span> <span class="c1">//"Hello, Eddie."</span></code></pre></figure>
+
+<p>И мы можем с легкостью задавать подчиненные вариации:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">askHello</span> <span class="o">=</span> <span class="nx">sayHello</span><span class="p">(</span><span class="s2">"?"</span><span class="p">);</span>
+<span class="nx">askHello</span><span class="p">(</span><span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello, Heidi?"</span>
+<span class="nx">askHello</span><span class="p">(</span><span class="s2">"Eddie"</span><span class="p">);</span> <span class="c1">//"Hello, Eddie?"</span></code></pre></figure>
+
+<h3>Каррирование традиционных функций</h3>
+
+<p>Вы можете видеть, насколько мощный этот подход, особенно если вам надо создать много детализированных кастомных функций. Единственная проблема это синтаксис. При создании каррированных функций вам надо сохранять вложенность возвращаемых функций и вызывать их с помощью новых функций, требующих многочисленные наборы скобок, в каждом из которых содержится свой изолированный аргумент. Это может стать запутанным.</p>
+
+<p>Одним из путей решения этой проблемы является создание быстрой и грязной каррирующей функции, которая будет принимать имя существующей функции, написанной без всех вложенных возвращений. Каррирующая функция должна вытащить список аргументов для этой функции и использовать их для возврата каррированной версии оригинальной функции.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">curryIt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uncurried</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">uncurried</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span>
+            <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kr">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">));</span>
+    <span class="p">};</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>Чтобы использовать ее, мы передаем имя функции, принимающей любое количество аргументов вместе с теми аргументами, которые мы хотим предварительно заполнить. Назад мы получаем функцию, ожидающую оставшиеся аргументы:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greeter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">greeting</span><span class="p">,</span> <span class="nx">separator</span><span class="p">,</span> <span class="nx">emphasis</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="o">+</span> <span class="nx">separator</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="nx">emphasis</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">greetHello</span> <span class="o">=</span> <span class="nx">curryIt</span><span class="p">(</span><span class="nx">greeter</span><span class="p">,</span> <span class="s2">"Hello"</span><span class="p">,</span> <span class="s2">", "</span><span class="p">,</span> <span class="s2">"."</span><span class="p">);</span>
+<span class="nx">greetHello</span><span class="p">(</span><span class="s2">"Heidi"</span><span class="p">);</span> <span class="c1">//"Hello, Heidi."</span>
+<span class="nx">greetHello</span><span class="p">(</span><span class="s2">"Eddie"</span><span class="p">);</span> <span class="c1">//"Hello, Eddie."</span></code></pre></figure>
+
+<p>И так же, как и раньше, мы не ограничены в количестве аргументов, которые хотим использовать при построении производных функций из нашей оригинальной каррированной функции:</p>
+
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">greetGoodbye</span> <span class="o">=</span> <span class="nx">curryIt</span><span class="p">(</span><span class="nx">greeter</span><span class="p">,</span> <span class="s2">"Goodbye"</span><span class="p">,</span> <span class="s2">", "</span><span class="p">);</span>
+<span class="nx">greetGoodbye</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="s2">"Joe"</span><span class="p">);</span> <span class="c1">//"Goodbye, Joe."</span></code></pre></figure>
+
+<h3>Серьезное каррирование</h3>
+
+<p>Наша небольшая каррирующая функция не способна обработать все возможные ситуации типа отсутствующих или опциональных параметров, но она делает осмысленную работу, пока мы придерживаемся строгого синтаксиса при передаче аргументов.
+</p>
+
+<p>Некоторые функциональные библиотеки, такие как Ramda обладают более гибкими каррирующими функциями, которые могут разделять параметры, необходимые для функции и позволяют передавать их индивидуально или группами для создания каррированных версий. Если вы хотите активно использовать каррирование, то это, возможно, подойдет вам.</p>
+
+<h3>Порядок аргументов</h3>
+
+<p>При каррирование функций очень важно учитывать порядок аргументов. Используя описанный подход вам нужно, чтобы заменяемый аргумент был последним среди аргументов, передаваемых в исходную функцию.</p>
+
+<p>Изначальный учет порядка аргументов облегчит планирование каррирования и применение его в работе. И учет порядка аргументов с точки зрения вероятности их изменения это хорошая привычка при проектировании любых функций.</p>
+
+<h3>Заключение</h3>
+<p>Каррирование это крайне полезная техника в функциональном JavaScript. Она позволяет вам генерировать библиотеку небольших, легко конфигурируемых функций с последовательным поведением, которые быстро используются и могут быть легко поняты при чтении вашего кода. Добавление каррирования к вашей практике написания кода будет поощрять использование частично примененных функций, поможет избежать возможного повторение и улучшит ваши привычке по именованию и работе с аргументами функций.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html" data-media="images/javascript/2018/2018-05-20-vvedenie-v-karrirovanie-v-javascript/1.jpg" data-title="Введение в каррирование в JavaScript">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Мышление в стиле Ramda - первые шаги | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Данный пост — это начало серии статей «Мышление в стиле Ramda» о функциональном программировании, в которых проясняют на простых и ясных примерах способы написания кода в функциональном стиле с использованием библиотеки Ramda.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">19/05/2018</span>
+
+							<h1>Мышление в стиле Ramda - первые шаги</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi/1.jpg" data-title="Мышление в стиле Ramda - первые шаги">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">Мышление в стиле Ramda - первые шаги</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+  Я нашёл Ramda прекрасно спроектированной библиотекой, которая предоставляет множество инструментов для чистого и элегантного функционального программирования в JavaScript.
+</blockquote>
+
+<p>Если вы желаете поэкспериментировать с Ramda в процессе чтения этой серии статей, то на сайте Ramda имеется удобная браузерная
+  <a href="https://ramdajs.com/repl/">песочница</a> для ваших экспериментов.</p>
+
+<h3>Функции</h3>
+
+<p>Как следует из названия, функциональное программирование имеет много общего с функциями. Для нашей ситуации, мы определим функцию как кусочек переиспользуемого кода, который вызывается с количеством аргументов, равным нулю и более, и возвращает результат.</p>
+
+<p>Это простая функция, написанная на JavaScript:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="kr">double</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Вместе со стрелочными функциями из ES6, вы можете написать ту же самую функцию гораздо более кратко. Я упоминаю об этом сейчас, потому что мы будем использовать множество стрелочных функций по мере продвижения наших статей.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="kr">double</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span></code></pre></figure>
+
+<p>Некоторые языки идут дальше и предоставляют поддержку для функций как конструкций первого класса. Под «конструкциями первого класса» я подразумеваю, что функции могут использоваться таким же образом, как прочие значения. К примеру, вы можете:</p>
+
+<ul>
+  <li>ссылаться на них в константах и переменных</li>
+  <li>передавать их в качестве параметров в другие функции</li>
+  <li>возвращать их как результат от других функций</li>
+</ul>
+
+<p>JavaScript — один из подобных языков, и мы будем использовать это преимущество.</p>
+
+<h3>Чистые функции</h3>
+<p>При написании функциональных программ, вы в конце концов приходите к пониманию важности работы с так называемыми «чистыми» функциями.</p>
+
+<p>Чистые функции — это функции, которые не имеют побочных эффектов. Они ничего не присваивают внешним переменным, они не уничтожают входные данные, не генерируют вывод, не читают и не пишут в базу данных, они не изменяют параметры, которые были им переданы, и так далее.</p>
+
+<p>Основная идея заключается в том, что если вы вызываете функцию с теми же параметрами снова и снова, то вы всегда будете получать один и тот же результат.</p>
+
+<p>Безусловно, вы можете делать различные дела с нечистыми функциями (и должны, если ваша программа делает что-то интересное), но для большей части кода вы желаете сохранить свои функции чистыми.</p>
+
+<h3>Неизменяемость</h3>
+
+<p>Другая важная концепция в функциональном программировании — это «иммутабельность». Что это значит? «Иммутабельный» означает «неизменяемый».</p>
+
+<p>Когда я работаю c иммутабельностью, после первичной инициализации значения или объекта, я уже не изменяю их вновь. Это значит, что вы не изменяете элементы в массиве или свойства объектов.</p>
+
+<p>Если мне необходимо изменить что-то в массиве или объекте, — я возвращаю новую его копию с изменёнными значениями. В последующих постах мы поговорим об этом в подробностях.</p>
+
+<p>Иммутабельность идёт рука об руку с чистыми функциями. Поскольку чистые функции не имеют права создавать побочные эффекты, они не имеют права изменять внешние структуры данных. Они вынуждены работать с данными в иммутабельном стиле.</p>
+
+<h3>С чего начать?</h3>
+
+<p>Самый простой путь начать мыслить в функциональной парадигме — начать заменять циклы на итерационные функции.</p>
+
+<h4>forEach</h4>
+
+<p>Вместо того чтобы писать явный цикл, попробуйте использовать функцию forEach вместо этого. Вот так:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Замените это:</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">myArray</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// на это:</span>
+<span class="nx">forEach</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span> <span class="nx">myArray</span><span class="p">)</span></code></pre></figure>
+
+<p>forEach берёт функцию и массив, и вызывает эту функцию к каждому элементу массива.
+  В то время как forEach — это наиболее доступная из этих функций, она используется в наименьшей степени при выполнении функционального программирования. Она не возвращает значения, так что она в реальности используется только для вызова функций, которые имеют побочные эффекты.</p>
+
+<h3>map</h3>
+<p>Следующая наиболее важная функция, которую мы изучим — это map. Как и forEach, map применяет функцию к каждому элементу массива. Тем не менее, в отличии от forEach, map собирает результат применения это функции в новый массив и возвращает его.</p>
+<p>Вот пример</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1">// --&gt; [2, 4, 6]</span></code></pre></figure>
+
+<p>Он использует анонимную функцию, но мы можем использовать здесь и именованную функцию:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="kr">double</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nx">map</span><span class="p">(</span><span class="kr">double</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span></code></pre></figure>
+
+<h3>filter / reject</h3>
+<p>Теперь, давайте взглянем на filter и reject. Как следует из названия, filter выбирает элементы из массива, на основе некоторой функции. Вот пример:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="nx">filter</span><span class="p">(</span><span class="nx">isEven</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>  <span class="c1">// --&gt; [2, 4]</span></code></pre></figure>
+
+<p>reject делает точно такую же вещь, но в обратном смысле. Она сохраняет элемент для каждой функции, которая вернёт ложное значение, и исключает элемент для тех функций, которые вернут истинное значение.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">reject</span><span class="p">(</span><span class="nx">isEven</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1">// --&gt; [1, 3]</span></code></pre></figure>
+
+<h3>find</h3>
+<p>find применяет функцию к каждому элементу массива и возвращает первый элемент, для которого функция возвращает истинное значение.</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">find</span><span class="p">(</span><span class="nx">isEven</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1">// --&gt; 2</span></code></pre></figure>
+
+<h3>reduce</h3>
+<p>reduce это немного более сложная чем другие функции, которые мы сегодня рассмотрели. Это стоит знать, но если у вас проблемы с пониманием сути её работы, не позволяйте этому останавливать вас. Вы можете пройти довольно долгий путь даже не понимая суть её работы.</p>
+
+<p>reduce принимает функцию с двумя аргументами, изначальное значение и массив для работы с ним. Первый аргумент, который будет передан функции, называется «аккумулятором», а вторым аргументом является значение итерируемого массива. Функция должна вернуть новое значение «аккумулятора».</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">accum</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">accum</span> <span class="o">+</span> <span class="nx">value</span>
+<span class="nx">reduce</span><span class="p">(</span><span class="nx">add</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1">// --&gt; 15</span></code></pre></figure>
+
+<ul>
+  <li>reduce вызывает функцию (add) с изначальным значением (5) на первом элементе массива (1). add возвращает новое значение аккумулятора (5 + 1 = 6).</li>
+  <li>reduce снова вызывает add, это время нового значения аккумулятора (6), и следующего значения массива (2). add возвращает 8.</li>
+  <li>reduce вызывает add снова с 8 и следующим значением (3), результат получается 11.</li>
+  <li>reduce вызывает add в последний раз с 11 и последним значением массива (4), результатом является 15.</li>
+  <li>reduce возвращает конечное аккумулируемое значение в качестве результата (15)</li>
+</ul>
+
+<h3>Простые комбинации</h3>
+<p>Как только мы усвоили идею прокидывания функций в другие функции, мы можем начать искать ситуации, в которых мы пожелаем объединить несколько функций вместе.
+  Ramda предоставляет несколько функций для выполнения простых комбинаций. Давайте взглянем на парочку из них:</p>
+
+<h3>Complement</h3>
+
+<p>Ранее мы использовали find для нахождения первого чётного числа в списке:</p>
+<p>Если бы мы пожелали найти первое нечётное число, мы бы могли написать функцию isOdd и использовать её. Но мы также знаем, что любое чётное число не является нечётным. Давайте переиспользуем функцию isEven.</p>
+
+<p>Ramda предоставляет complement, функцию высшего порядка, которая берёт другую функцию и возвращает новую функцию, которая возвращает истину, когда оригинальная функция возвращает ложное значение, и ложь, когда оригинальная функция возвращает истинное значение.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="nx">find</span><span class="p">(</span><span class="nx">complement</span><span class="p">(</span><span class="nx">isEven</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1">// --&gt; 1</span></code></pre></figure>
+
+<p>Ещё лучше — дать функции-комплементу собственное название, чтобы иметь возможность переиспользовать её:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">isEven</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="kd">const</span> <span class="nx">isOdd</span> <span class="o">=</span> <span class="nx">complement</span><span class="p">(</span><span class="nx">isEven</span><span class="p">)</span>
+<span class="nx">find</span><span class="p">(</span><span class="nx">isOdd</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1">// --&gt; 1</span></code></pre></figure>
+
+<p>Обратите внимание, что complement реализует ту же самую идею, что и оператор ! для значений в императивных языках программирования.</p>
+
+<h3>Both / Either</h3>
+
+<p>Представим, что мы работаем над системой голосований. Имея человека, мы хотели бы иметь возможность определить, имеет ли это лицо право на голос. Основываясь на наших текущих знаниях, человек должен быть не моложе 18 лет и должен быть гражданином страны, чтобы иметь возможность голосовать. Кто-то является гражданином этой страны с рождения, а кто-то стал им в результате натурализации.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">wasBornInCountry</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">=&gt;</span> <span class="nx">person</span><span class="p">.</span><span class="nx">birthCountry</span> <span class="o">===</span> <span class="nx">OUR_COUNTRY</span>
+<span class="kd">const</span> <span class="nx">wasNaturalized</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">=&gt;</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">naturalizationDate</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">isOver18</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">=&gt;</span> <span class="nx">person</span><span class="p">.</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+
+<span class="kd">const</span> <span class="nx">isCitizen</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">=&gt;</span> <span class="nx">wasBornInCountry</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="o">||</span> <span class="nx">wasNaturalized</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">isEligibleToVote</span> <span class="o">=</span> <span class="nx">person</span> <span class="o">=&gt;</span> <span class="nx">isOver18</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isCitizen</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span></code></pre></figure>
+
+<p>То, что мы написали выше — работает, но Ramda предлагает несколько удобных функций, которые помогут сделать наш код немного более чистым.</p>
+
+<p>Функция both берёт две других функции и возвращает новую функцию, которая вернёт true, если обе функции вернут правдивое значение при применении к ней аргументов, и false в противном случае.</p>
+
+<p>either берёт две другие функции и возвращает новую функцию, которая вернёт true, если любая функция возвращает правдивое значение с применёнными к ней аргументами, и false в ином случае.</p>
+
+<p>Используя эти две функции, мы можем упростить функции isCitizen и isEligibleToVote:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">isCitizen</span> <span class="o">=</span> <span class="nx">either</span><span class="p">(</span><span class="nx">wasBornInCountry</span><span class="p">,</span> <span class="nx">wasNaturalized</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">isEligibleToVote</span> <span class="o">=</span> <span class="nx">both</span><span class="p">(</span><span class="nx">isOver18</span><span class="p">,</span> <span class="nx">isCitizen</span><span class="p">)</span></code></pre></figure>
+
+<p>Обратите внимание, что both, по сути, реализует ту же самую идею, что и оператор && (и) для значений, а either реализует такую же идею для функций, как оператор || (или) для значений.</p>
+
+<p>Ramda также предоставляет такие методы как allPass и anyPass, которые берут массив с любым количеством функций. Как подсказывают их имена, allPass работает подобно both, а anyPass подобно either.</p>
+
+
+<h3>Конвейер</h3>
+<p>Иногда мы хотим применить несколько функций к некоторым данным в конвейерном стиле. Скажем, мы могли бы взять два числа, умножить их вместе, добавить единицу и возвести в квадрат результат. Вы можем написать что-то вроде этого:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span>
+<span class="kd">const</span> <span class="nx">addOne</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="kd">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
+
+<span class="kd">const</span> <span class="nx">operate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">multiply</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">incremented</span> <span class="o">=</span> <span class="nx">addOne</span><span class="p">(</span><span class="nx">product</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">squared</span> <span class="o">=</span> <span class="nx">square</span><span class="p">(</span><span class="nx">incremented</span><span class="p">)</span>
+
+<span class="k">return</span> <span class="nx">squared</span>
+<span class="p">}</span>
+<span class="nx">operate</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// =&gt; ((3 * 4) + 1)^2 =&gt; (12 + 1)^2 =&gt; 13^2 =&gt; 169</span></code></pre></figure>
+
+<p>Обратите внимание, что каждая операция применяется к результату предыдущей операции в конвеере.
+  Ramda предоставляет функцию pipe, которая берёт список одной и более функций и возвращает новую функцию.</p>
+
+<p>Новая функция принимает такое же количество аргументов, что и первая. Далее она «передаёт по конвееру» эти аргументы через каждую функцию в списке. Она применяет к первой функции полученные аргументы, передаёт её результат во вторую функцию, и так далее. Результатом последней функции является результат прохождения всего конвеера.</p>
+
+<p>Обратите внимание, что все функции после первой должны принимать лишь один аргумент.
+  Зная это, мы можем использовать функцию pipe для упрощения нашего конвеера.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">operate</span> <span class="o">=</span> <span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">multiply</span><span class="p">,</span>
+  <span class="nx">addOne</span><span class="p">,</span>
+  <span class="nx">square</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>Когда мы вызываем operate(3, 4), pipe функция передаёт 3 и 4 функции multiply, получая в итоге 12. Далее она передаёт 12 в addOne, которая вернёт 13. И далее она передаст 13 в функцию square, который вернёт 169, и это будет финальным результатом всего конвеера.</p>
+
+
+<h3>Compose</h3>
+
+<p>Другой способ, которым мы могли бы написать нашу оригинальную функцию конвеера — это написать его в одну строку:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">operate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">square</span><span class="p">(</span><span class="nx">addOne</span><span class="p">(</span><span class="nx">multiply</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)))</span></code></pre></figure>
+
+<p>Это гораздо более компактно, но несколько сложнее для чтения. В этой форме, однако, он может быть переписан с использованием функции compose из Ramda.</p>
+
+<p>compose работает точно также как и pipe, за исключением того, что он применяет функции справа налево, а не слева направо. Напишем нашу функцию operate с помощью compose:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">operate</span> <span class="o">=</span> <span class="nx">compose</span><span class="p">(</span>
+  <span class="nx">square</span><span class="p">,</span>
+  <span class="nx">addOne</span><span class="p">,</span>
+  <span class="nx">multiply</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>Это точно такой же конвеер, как и вышесозданный, но его функции находятся в обратном порядке. По факту, функция compose от Ramda написана на принципах конвеера.
+  Я всегда думаю о compose следующим образом: compose(f, g)(value) эквивалентно f(g(value)).
+  Обратите внимание, что как и с pipe, все функции, за исключением последней, должны принимать лишь один аргумент.</p>
+
+<h3>Compose или pipe?</h3>
+
+<p>Я думаю, что pipe, вероятно, легче для понимания, когда вы приходите с более императивного поля деятельности, поскольку вы привыкли читать функции слева направо. Но compose, с другой стороны, намного больше похож на вызов нескольких вложенных функций, как я писал выше.</p>
+
+<h3>Заключение</h3>
+<p>Объединяя несколько функций определённым образом, мы можем начать писать другие более мощные функции.
+  Возможно, вы заметили, что в основном мы игнорировали аргументы, когда мы сочетали функции. Мы передаём аргументы лишь тогда, когда мы, наконец, вызываем полученную функцию-конвеер.
+  Это одна из основ функционального программирования и мы ещё будем много говорить об этом в следующей статьей этой серии, «Частичное применение (каррирование)». Также мы поговорим о том, как сочетать функции, которые принимают больше одного аргумента.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html" data-media="images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi/1.jpg" data-title="Мышление в стиле Ramda - первые шаги">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>React и ES6 - Часть 2, Классы React и инициализаторы свойств ES7 | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Это вторая статья из серии, в которой мы собираемся исследовать использование React с ECMAScript 6.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-12-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-12-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">11/05/2018</span>
+
+							<h1>React и ES6 - Часть 2, Классы React и инициализаторы свойств ES7</h1>
+
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-12-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7/1.jpg" data-title="React и ES6 - Часть 2, Классы React и инициализаторы свойств ES7">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">React и ES6 - Часть 2, Классы React и инициализаторы свойств ES7</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>Другие части вы можете найти по ссылкам:
+    <ul>
+        <li>
+            <a href="blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie">Часть 1, Введение</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7">Часть 2, Классы React и инициализаторы свойств ES7</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">Часть 4, Миксины React использующие ES6</a>
+        </li>
+    </ul>
+</blockquote>
+
+
+<p>В <a href="/blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie">первой статье</a> мы начали с введения в ES6 и создания статичного компонента React, выводящего «Hello from ES6». Не очень интересно :)</p>
+<p>В этой статье мы собираемся создать немного более сложный компонент React CartItem. Он будет выводить информацию о продукте, включая изображение, заголовок и цену. Также пользователь сможет взаимодействовать с компонентом CartItem, увеличивая или уменьшая количество элементов.Наш компонент будет изменять при этом общую сумму.</p>
+
+<p>Вот что мы увидим в результате:</p>
+
+<img src="images/javascript/2018/2018-05-12-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7/2.png" alt="react-img-1">
+
+<h3>Создание файла index.html</h3>
+
+<p>Начнем с создания простого HTML-файла:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>React and ES6 Part 2<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"root"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"dist/bundle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<p>Обратите внимание, что мы подключили фреймворк <a href="http://foundation.zurb.com/">Foundation CSS</a> с CDN. Это сделает наше приложение немного более симпотичным. Элемент div.root будет использоваться как контейнер для React приложения.</p>
+
+<h3>Gulpfile.js</h3>
+
+<p>Просто скопируйте содержимое <a href="/blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie#gulp">gulpfile.js</a> из предыдущей части. Никаких изменений на данном этапе не понадобиться.</p>
+
+<p>Также скопируйте package.json. Далее, запустите команду npm install (чтобы установить зависимости) и затем команду gulp. Gulp будет непрерывно следить за изменениями в файлах</p>
+
+<h3>Основной компонент приложения</h3>
+
+<p>Создайте app.jsx:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">CartItem</span> <span class="k">from</span> <span class="s1">'./cartItem'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">order</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="s1">'Fresh fruits package'</span><span class="p">,</span>
+    <span class="na">image</span><span class="p">:</span> <span class="s1">'http://images.all-free-download.com/images/graphiclarge/citrus_fruit_184416.jpg'</span><span class="p">,</span>
+    <span class="na">initialQty</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mi">8</span>
+<span class="p">};</span>
+
+<span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">CartItem</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">order</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span>
+          <span class="nx">image</span><span class="o">=</span><span class="p">{</span><span class="nx">order</span><span class="p">.</span><span class="nx">image</span><span class="p">}</span>
+          <span class="nx">initialQty</span><span class="o">=</span><span class="p">{</span><span class="nx">order</span><span class="p">.</span><span class="nx">initialQty</span><span class="p">}</span>
+          <span class="nx">price</span><span class="o">=</span><span class="p">{</span><span class="nx">order</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span><span class="sr">/&gt;,</span><span class="err">
+</span>    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'.root'</span><span class="p">)</span>
+    <span class="p">);</span></code></pre></figure>
+
+<p>Вот что здесь происходит:
+    <ul>
+        <li>Строка 1. Мы импортируем библиотеку React и инициализируем переменную React.
+        </li>
+        <li>Строка 2. Импортируем компонент CartItem, мы создадим его позже.
+        </li>
+        <li>Строки 4-9. Передаем свойства в компонент CartItem (включая заголовок товара, изображение, начальную стоимость и цену).
+        </li>
+        <li>Строки 11-17. Монтируем компонент CartItem в элемент DOM по классу .root.
+        </li>
+    </ul>
+</p>
+
+<h3>Структура компонента CartItem</h3>
+<p>Пришло время создать компонент, отвечающий за отображение данных и взаимодействие с пользователем.
+    Добавьте следующий код в файл cartItem.jsx:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">qty</span><span class="p">:</span> <span class="nx">props</span><span class="p">.</span><span class="nx">initialQty</span><span class="p">,</span>
+        <span class="na">total</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+    <span class="nx">componentWillMount</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">recalculateTotal</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">increaseQty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">qty</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">qty</span> <span class="o">+</span> <span class="mi">1</span><span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">recalculateTotal</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">decreaseQty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">newQty</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">qty</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">qty</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">qty</span><span class="p">:</span> <span class="nx">newQty</span><span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">recalculateTotal</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">recalculateTotal</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">total</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">qty</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">price</span><span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Объяснение:
+    <ul>
+        <li>
+            Строки 4-10. Это конструктор, появившийся в классах React. Первое, на что следует обратить внимание — это вызов функции super(props), он является обязательным. Следующий момент — вместо метода getInitialState(), разработчики React рекомендуют использовать своство this.state. Мы инициализировали состояние свойствами, переданными из app.jsx. Лично мне нравится это улучшение.
+        </li>
+        <li>
+            Строки 11-13. Объявление метода componentWillMount() (который в конечном счете является методом класса CartItem). В этом методе мы длаем пересчет общей стоимости. Чтобы рассчитать общую стоимость, мы используем метод recalculatePrice(), который умножает количество (хранится в состоянии компонента) на цену (является свойством).
+        </li>
+        <li>
+            Строки 14-20. Методы для увеличения или уменьшения количества элементов. Эти методы будут вызываться по нажатию на кнопки (см. скриншот приложения в начале статьи). Также обратите внимание, что мы используем в качестве функции обратного вызова метода this.setState() метод пересчета общей стоимости.
+        </li>
+    </ul>
+</p>
+
+<h3>Метод render компонента CartItem</h3>
+
+<p>Метод render компонента CartItem</p>
+
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+<span class="c1">// previous code we wrote here</span>
+<span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">article</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"row large-4"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">figure</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"text-center"</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">image</span><span class="p">}</span><span class="sr">/&gt;</span><span class="err">
+</span>            <span class="o">&lt;</span><span class="sr">/p&gt;</span><span class="err">
+</span>            <span class="o">&lt;</span><span class="nx">figcaption</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2&gt;</span><span class="err">
+</span>            <span class="o">&lt;</span><span class="sr">/figcaption&gt;</span><span class="err">
+</span>        <span class="o">&lt;</span><span class="sr">/figure&gt;</span><span class="err">
+</span>        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"large-4 column"</span><span class="o">&gt;&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Quantity</span><span class="p">:</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">qty</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/strong&gt;&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"large-4 column"</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">decreaseQty</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button alert"</span><span class="o">&gt;-&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>        <span class="o">&lt;</span><span class="sr">/p&gt;</span><span class="err">
+</span>
+        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"large-4 column"</span><span class="o">&gt;&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Price</span> <span class="nx">per</span> <span class="nx">item</span><span class="p">:</span><span class="o">&lt;</span><span class="sr">/strong&gt; ${this.state.price}&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="nx">h3</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"large-12 column text-center"</span><span class="o">&gt;</span>
+            <span class="nx">Total</span><span class="p">:</span> <span class="nx">$</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">total</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="sr">/h3&gt;</span><span class="err">
+</span>
+        <span class="o">&lt;</span><span class="sr">/article&gt;;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>
+    Здесь мы используем только теги в формате JSX + состояние компонента и применяем Foundation CSS для декорирования.
+    Не беспокойтесь по поводу {this.increaseQty.bind(this)} — я объясню это в следующей статье серии. А пока просто поверьте мне, что эта строка будет вызывать метод increaseQty() класса CartItem.
+    Итак, теперь у нас симпотичное приложение, взаимодействующее с пользователем. Не смотря на то, что это простой пример, он показывает, как написать компонент React, используя ECMAScript 6. Лично мне нравится новый синтаксис ES6.
+    Мы еще не закончили. Перед тем, как закончить статью, я хотел бы взглянуть на пару дополнительных функций ES6.
+</p>
+
+<h3>Default Props и Prop Types в ES6 классах React</h3>
+<p>Представьте, что мы хотим добавить валидацию и значения по умолчанию для компонета CartItem.
+    К счастью, это поддерживается React и называется Default Props и Prop Types.
+    После класса CartItem добавьте следующие строки:</p>
+
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">CartItem</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">number</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+    <span class="na">initialQty</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">number</span>
+<span class="p">};</span>
+
+<span class="nx">CartItem</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="s1">'Undefined Product'</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="na">initialQty</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">};</span></code></pre></figure>
+<p>В результате, если вы попытаетесь передать число в качестве свойства title, вы получите предупреждение в консоли. В этом сила валидации свойств React.</p>
+
+<h3>Добавление ES7 в проект</h3>
+
+<p>Вы можете задать вполне резонный вопрос — зачем я буду думать о ES7, когда ES6 только стандартизирован?
+
+    Я отвечу, что это взгляд в будущее. И начало использования таких особенностей, как инициализаторы свойств и декораторы.
+
+    Несмотря на то, что ES7 пока находится на совсем ранней стадии, есть ряд особенностей, которые уже реализованы в Babel. Эти экспериментальные особенности транслируются с ES7 в валидный ES5. Круто!
+
+    Чтобы добавить синтаксический сахар, нам необходимо внести небольшое изменение в строку 8 в gulpfile.js. Замените эту строку на код ниже:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">babelify</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span><span class="na">stage</span><span class="p">:</span> <span class="mi">0</span><span class="p">}))</span></code></pre></figure>
+
+<h3>Инициализаторы свойств ES7 для Default Props и Prop Types компонента React</h3>
+
+<p>В класс CartItem добавьте следующий код перед конструктором:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+        <span class="na">price</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">number</span><span class="p">.</span><span class="nx">isRequired</span><span class="p">,</span>
+        <span class="na">initialQty</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PropTypes</span><span class="p">.</span><span class="nx">number</span>
+    <span class="p">};</span>
+    <span class="kr">static</span> <span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Undefined Product'</span><span class="p">,</span>
+        <span class="na">price</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="na">initialQty</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">};</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">// .. all other code</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3>Инициализаторы свойств ES7 для начального состояния компонента</h3>
+<p>Финальным шагом будет перенос начального состояния компонента из конструктора в инициализатор свойства.
+    Добавьте следующий код перед конструктором класса CartItem:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="c1">// .. some code here</span>
+    <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">qty</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">initialQty</span><span class="p">,</span>
+        <span class="na">total</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">};</span>
+    <span class="c1">// .. constructor starts here</span></code></pre></figure>
+<p>Вы можете удалить код, связанный с инициализацией начального состояния, из конструктора.</p>
+
+<h3>Заключение</h3>
+<p>В этой статье мы познакомились с реализацией компонентов React на ES6, а также кратко рассмотрели инициализаторы свойств ES7. Следите за серией ES6 + React!</p>
+
+						</div>
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7.html" data-media="images/javascript/2018/2018-05-12-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7/1.jpg" data-title="React и ES6 - Часть 2, Классы React и инициализаторы свойств ES7">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

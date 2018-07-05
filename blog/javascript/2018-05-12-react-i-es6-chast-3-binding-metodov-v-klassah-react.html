@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>React и ES6 - Часть 3, Биндинг методов в классах React | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Это третья статья серии, в которой мы продолжаем рассматривать использование React c ECMAScript 6 и ECMAScript 7.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">12/05/2018</span>
+
+							<h1>React и ES6 - Часть 3, Биндинг методов в классах React</h1>
+
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react/1.jpg" data-title="React и ES6 - Часть 3, Биндинг методов в классах React">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">React и ES6 - Часть 3, Биндинг методов в классах React</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>Другие части вы можете найти по ссылкам:
+    <ul>
+        <li>
+            <a href="blog/javascript/2018-05-11-react-i-es6-chast-1-vvedenie">Часть 1, Введение</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react">Часть 3, Биндинг методов в классах React</a>
+        </li>
+        <li>
+            <a href="blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">Часть 4, Миксины React использующие ES6</a>
+        </li>
+    </ul>
+</blockquote>
+
+<p>Если вы читали раздел «Метод render компонента CartItem» в <a href="/blog/javascript/2018-05-11-react-i-es6-chast-2-klassy-react-i-inicializatory-svoystv-es7">предыдущей статье</a>, вас возможно удивило использование this.increaseQty.bind(this).</p>
+<p>Если мы попытаемся заменить эту конструкцию на {this.increaseQty}, мы увидим ошибку «Uncaught TypeError: Cannot read property ’setState’ of undefined» в консоли:</p>
+<img src="/images/javascript/2018/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react/react-3.png" alt="react-3">
+
+<p>Дело в том, что, когда мы вызываем функцию таким способом, она вызывается не в контексте класса, а значением this является undefined. Это стандартное поведение JavaScript и вполне ожидаемо. В случае использования React.createClass() все методы автоматически связываются с созданным объектом. Это может показаться нелогичным для некоторых разработчиков.</p>
+
+<p>Когда команда React реализовывала поддержку ES6, они решили отказаться от автоматического связывания. </p>
+
+<p>Давайте рассмотрим различные способы вызова метода в JSX в случае использования ES6 классов.</p>
+
+<h3>Способ 1. Использование Function.prototype.bind().</h3>
+
+<p>Мы с ним уже встречались:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Поскольку любой метод ES6 является обычной функцией JavaScript, он наследует метод bind() прототипа Function. Поэтому теперь, когда мы вызовем increaseQty() в JSX, this будет ссылаться на экземпляр класса. </p>
+
+<h3>Способ 2. Использование функции, определенной в конструкторе.</h3>
+<p>Этот способ является комбинацией предыдущего способа с использованием конструктора класса:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Вам больше не нужно использовать bind() в JSX, но это немного увеличивает код конструктора.</p>
+
+<h3>Способ 3. Использование стрелочной функции и конструктора.</h3>
+
+<p>Стрелочные функции ES6 сохраняют контекст выполнения при вызове. Вы можете использовать эту особенность и определить increaseQty() в конструкторе следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3>Способ 4. Использование стрелочных функций и свойств класса ES7.</h3>
+
+<p>Дополнительно, вы можете использовать стрелочные функции в комбинации с свойствами класса ES7:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+    <span class="nx">increaseQty</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">();</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Таким образом, вместо определения метода класса в конструкторе, как в способе 3, мы использовали инициализатор свойства.
+    Обратите внимание: свойства класса еще не являются частью стандарта JavaScript. Но вы можете пользоваться ими, подключив пресет Babel stage-0. Подробнее об этом можно прочитать в документации Babel.
+    Мы уже переключались в режим stage 0 во второй части серии, поэтому в данном случае я не буду это объяснять.</p>
+
+<h3>Способ 5. Использование синтаксиса биндинга ES7.</h3>
+<p>Совсем недавно в Babel реализовали поддержку синтаксического сахара для Function.prototype.bind() с использованием ::. Я не буду вдаваться здесь в подробности о том, как он работает. Уже есть довольно хорошее объяснение. Дополнительную информацию вы можете получить из статьи в
+    <a href="http://babeljs.io/blog/2015/05/14/function-bind/">официальном блоге Babel</a>.</p>
+<p>Ниже показан код с использованием синтаксиса биндинга ES7:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span> <span class="o">=</span> <span class="p">::</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">;</span>
+        <span class="c1">// line above is an equivalent to this.increaseQty = this.increaseQty.bind(this);</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+<p>Эта особенность является экспериментальной.</p>
+
+<h3>Способ 6. Использование ES7 биндинга в JSX.</h3>
+<p>Вы также можете использовать возможности ES7 биндинга непосредственно в JSX файле. Например:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">CartItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{::</span><span class="k">this</span><span class="p">.</span><span class="nx">increaseQty</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"button success"</span><span class="o">&gt;+&lt;</span><span class="sr">/button&gt;</span><span class="err">
+</span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Если кратко, единственным недостатком этого способа является то, что функция пересоздается каждый раз при перерисовке компонента. Это не оптимально. И что более важно, это вызовет проблемы, если вы используете что-то вроде PureRenderMixin (или его эквивалент для классов ES6).</p>
+
+<h3>Заключение</h3>
+<p>В той статье мы рассмотрели различные способы биндинга методов класса в компонентах React. </p>
+<p>В следующий раз мы рассмотрим, как обстоят дела с миксинами React в ES6 классах.</p>
+
+
+
+
+
+
+						</div>
+
+<div class="tags">Метки:
+  
+    
+    <a href="/blog/tag/react"><code class="highligher-rouge"><nobr>react</nobr></code>&nbsp;</a>
+  
+</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react.html" data-media="images/javascript/2018/2018-05-12-react-i-es6-chast-3-binding-metodov-v-klassah-react/1.jpg" data-title="React и ES6 - Часть 3, Биндинг методов в классах React">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

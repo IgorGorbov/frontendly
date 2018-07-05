@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Производительный параллакс | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Любите вы параллакс или ненавидите его, но он никуда не денется. При разумном использовании он может добавить веб-приложению глубину и утонченность.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/html-css/2018/2018-05-15-proizvoditelnyy-parallaks/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/html-css/2018/2018-05-15-proizvoditelnyy-parallaks/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/html-css" class="page-category-link">HTML & CSS</a> <span class="date">15/05/2018</span>
+
+							<h1>Производительный параллакс</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html" data-media="http://frontendly.ru/images/html-css/2018/2018-05-15-proizvoditelnyy-parallaks/1.jpg" data-title="Производительный параллакс">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/html-css">HTML & CSS</a></li>
+								<li class="active">Производительный параллакс</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+    Любите вы параллакс или ненавидите его, но он никуда не денется. При разумном использовании он может добавить веб-приложению глубину и утонченность. Проблема заключается в том, что реализовать параллакс производительно — это непросто. В этой статье мы обсудим решение, которое одновременно и производительное, и, что важно, кросс-браузерное.
+</blockquote>
+
+<h3>TL;DR</h3>
+<p>Не используйте события прокрутки или background-position для реализации параллакса.
+    Для более правильного эффекта параллакса используйте CSS 3D трансформации.
+    Для Mobile Safari используйте position: sticky для обеспечения распространения эффекта параллакса.
+</p>
+<p>
+    Если вам нужно готовое решение, возьмите <a href="https://github.com/GoogleChrome/ui-element-samples/blob/gh-pages/parallax/scripts/parallax.js">Parallax helper JS</a>  из репозитория UI Element Samples.
+</p>
+
+<h3>Проблемы параллакса</h3>
+
+<p>Для начала рассмотрим два общих способа реализации эффекта параллакса, в частности, почему они нам не подходят.</p>
+
+
+<p> <b>Плохо:</b> использование событий прокрутки
+    Ключевое требование параллакса — он должен быть связан с прокруткой страницы; каждому изменению позиции скролла должно соответствовать изменение позиции элементов, к которым применяется параллакс.
+    Это звучит просто, но важный механизм современных браузеров — это возможность работать асинхронно. Это применимо, в нашем случае, к событию scroll. В большинстве браузеров обработчики события scroll выполняются по принципу «лучшее из возможного» (в оригинале — «best-effort», прим. переводчика) и не гарантируют анимацию при каждом изменении положения скролла!
+</p>
+
+<p>Эта важная информация говорит нам о том, почему мы должны избегать основанного на JavaScript решения, которое перемещает элементы на основе событий прокрутки: JavaScript не гарантирует, что параллакс будет соответствовать позиции скролла. В более старых версиях Mobile Safari события прокрутки фактически срабатывали в конце прокрутки, что сделало невозможным реализацию эффекта параллакса на основе событий прокрутки. В более поздних версиях анимация отображается во время прокрутки, но, как и в Chrome, по принципу «лучшее из возможного». Если основной поток занят какой-либо другой работой, события прокрутки не будут выполняться немедленно, что означает, что эффект параллакса будет потерян.</p>
+
+<h3>Плохо: обновление background-position</h3>
+
+<p>Другая ситуация, которой мы хотели бы избежать — это отрисовка на каждом кадре. Многие решения пытаются изменить положение фона, чтобы обеспечить эффект параллакса, тем самым заставляя браузер перерисовывать затронутые части страницы при прокрутке. Такое решение может быть достаточно дорогостоящим, чтобы значительно затормозить анимацию.
+    Если мы хотим реализовать эффект параллакса, мы должны применить решение на основе аппаратно ускоренных свойств (на данный момент это transform и opacity), которые не зависят от событий прокрутки.</p>
+
+<h3>CSS в 3D</h3>
+
+<p>И Скотт Келлум, и Кит Кларк проделали значительную работу в области использования CSS 3D для реализации эффекта параллакса. Техника, которую они эффективно используют, такова:</p>
+
+<ul>
+    <li>Установить для контейнера свойство overflow-y: scroll (и возможно overflow-x: hidden).</li>
+    <li>Для этого же элемента применить значение perspective, а свойство perspective-origin установить в top left или 0 0.</li>
+    <li>Для дочерних элементов применить перемещение по оси Z и масштабировать их, чтобы обеспечить эффект параллакса, не влияя на их размер на экране.</li>
+</ul>
+
+<p>CSS для этого выглядит так:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">overflow-x</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+    <span class="nl">overflow-y</span><span class="p">:</span> <span class="nb">scroll</span><span class="p">;</span>
+    <span class="nl">perspective</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="nl">perspective-origin</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.parallax-child</span> <span class="p">{</span>
+    <span class="nl">transform-origin</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translateZ</span><span class="p">(</span><span class="m">-2px</span><span class="p">)</span> <span class="n">scale</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Эти правила могут быть применены к фрагменту кода:</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container”&gt;
+    &lt;div class="</span><span class="na">parallax-child</span><span class="err">”</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>Настройка масштаба для перспективы
+    Перемещение элемента на задний план делает его меньше пропорционально значению перспективы. Рассчитать, насколько нужно масштабировать элемент можно по формуле: (perspective — distance) / perspective. Поскольку мы хотим, чтобы элемент был параллаксным, но сохранил исходный размер, мы должны масштабировать его таким образом.
+</p>
+
+<p>В случае, показанном выше, перспектива равна 1px, а расстояние Z для parallax-child равно −2px. Это означает, что элемент должен быть увеличен до 3x. Это вы можете видеть в коде: scale(3).</p>
+
+<p>Для любого элемента, не имеющего значения translateZ, вы можете заменить значение расстояния на ноль. Это означает, что масштаб будет равен (perspective — 0) / perspective, т.е. 1. Этот элемент не нужно масштабировать ни вверх, ни вниз. Очень удобно, правда.</p>
+
+<h3>Как работает этот подход</h3>
+<p>Важно понять, почему этот подход работает, т.к. скоро мы будем использовать эти знания. Прокрутка фактически является преобразованием, поэтому ее можно аппаратно ускорить; в основном это связано с перемещением слоев с помощью GPU. В обычном скроллинге без перспективы, прокрутка происходит в отношении 1:1, если сравнивать прокрутку контейнера и дочерних элементов. Если вы прокрутите элемент вниз на 300px, элементы переместятся также на 300px.</p>
+
+<p>менение значения перспективы вносит рассинхронизацию в этот процесс; это значение меняет матрицы, лежащие в основе преобразования прокрутки. Теперь прокрутка на 300px может перемещать дочерние элементы, например, на 150px, в зависимости от выбранной перспективы и значений translateZ. Если значение translateZ элемента равно 0, он будет прокручиваться в отношении 1:1 (как это было раньше), но дочерний элемент, сдвинутый в направлении Z от точки перспективы, будет прокручиваться с другой скоростью! Чистый результат: эффект параллакса. И, что очень важно, это автоматически обрабатывается как часть внутреннего устройства прокрутки браузера, что означает, что нет необходимости слушать события прокрутки или менять положение фона.</p>
+
+
+<h3>Ложка дегтя: Mobile Safari</h3>
+
+<p>Есть одно важное предостережение, касающееся сохранения 3D-эффектов для дочерних элементов. Если добавить элементы в иерархию между элементом с перспективой и его параллаксными детьми, 3D перспектива «сплющится», а это означает, что эффект будет потерян.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"parallax-container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"parallax-child"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>В коде выше добавился элемент .parallax-container, это фактически делает перспективу плоской и эффект параллакса будет потерян. Решение в большинстве случаев довольно просто: вы добавляете правило transform: preserve-3d к элементу, заставляя его тем самым распространять дальше по дереву любые 3D-эффекты (например, наше значение перспективы), которые были применены.</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.parallax-container</span> <span class="p">{</span>
+    <span class="nl">transform-style</span><span class="p">:</span> <span class="n">preserve-3d</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>В случае с Mobile Safari, однако, все немного запутанно. Применение к контейнеру правила overflow-y: scroll технически работает, но за счет переброски прокручиваемых элементов. Решение заключается в добавлении -webkit-overflow-scrolling: touch, но это также сгладит перспективу, и мы не получим никакого параллакса.</p>
+
+<p>С точки зрения прогрессивного улучшения это, вероятно, не слишком большая проблема. Если мы не сможем реализовать параллакс во всех браузерах, наше приложение все равно будет работать, но было бы неплохо разобраться с этим.</p>
+
+
+<h3>position: sticky придет на помощь!</h3>
+<p>В описанной выше ситуации на помощь приходит свойство position: sticky, которое при скролле позволяет элементу «прилипнуть» к верхнему краю вьюпорта или родительского элемента. Спецификация довольно обширна, но есть в ней один полезный маленький камушек:
+</p>
+
+<p>Блок с position: sticky позиционируется аналогично блоку с position: relative, но смещение вычисляется относительно ближайшего предка с полосой прокрутки или относительно вьюпорта, если ни один из предков не имеет полосы прокрутки. </p>
+
+<p>На первый взгляд это может показаться малозначительным, но ключевым моментом в этом предложении является то, как именно вычисляется липкость элемента: «смещение вычисляется по отношению к ближайшему предку с полосой прокрутки». Другими словами, расстояние для перемещения липкого элемента (пока он не станет прикрепленным к другому элементу или к вьюпорту) вычисляется до применения любых других преобразований, а не после. Это означает, что, подобно примеру ранее, если смещение было рассчитано на 300 пикселей, есть возможность использовать перспективу (или любое другое преобразование), чтобы манипулировать этим значением смещения в 300 пикселей, прежде чем оно будет применено к любым липким элементам.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container”&gt;
+  &lt;div class="</span><span class="na">parallax-container</span><span class="err">”</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"parallax-child"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.container</span> <span class="p">{</span>
+    <span class="nl">overflow-y</span><span class="p">:</span> <span class="nb">scroll</span><span class="p">;</span>
+    <span class="nl">-webkit-overflow-scrolling</span><span class="p">:</span> <span class="n">touch</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.parallax-container</span> <span class="p">{</span>
+    <span class="nl">perspective</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.parallax-child</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="n">-webkit-sticky</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-2px</span><span class="p">)</span> <span class="n">scale</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Это восстанавливает эффект параллакса для Mobile Safari, что является отличной новостью!</p>
+
+<h3>Оговорки для липкого позиционирования</h3>
+
+<p>Есть одна оговорка: position: sticky изменяет механизм параллакса. Липкое позиционирование пытается, скажем, прикрепить элемент к прокручивающемуся контейнеру, тогда как «не-липкое» позиционирование этого не делает. Это означает, что параллакс с липким позиционированием оказывается противоположным:</p>
+
+<ul>
+    <li>С position: sticky чем ближе элемент к z=0, тем меньше он движется.</li>
+    <li>Без position: sticky чем ближе элемент к z=0, тем больше он движется.</li>
+</ul>
+
+<p>Если это кажется абстрактным, посмотрите <a href="http://jsbin.com/sexiwe/edit?output">демо Роберта Флэка</a> , которое показывает, как по-разному ведут себя элементы с и без липкого позиционирования. Чтобы увидеть разницу, вам понадобится Chrome Canary (на момент написания статьи версия 56) или Safari.</p>
+
+<p>Демо Роберта Флэка, показывающее, как position: sticky влияет на эффект параллакса.</p>
+
+<h3>Различные ошибки и обходные пути</h3>
+
+<p>Как всегда, в этом решении есть острые углы, которые необходимо сгладить:</p>
+
+<ul>
+    <li>Поддержка липкого позиционирования неполная. Поддерживается в Chrome, в Edge поддержка отсутствует полностью, в Firefox есть ошибки при комбинировании position: sticky и перспективы. В таких случаях стоит добавлять position: sticky (версию с префиксом -webkit), когда это необходимо, только для Mobile Safari.</li>
+    <li>Эффект не «просто работает» в Edge. Edge пытается обработать прокрутку на уровне OC, что в целом хорошо, но в данном случае не позволяет обнаружить изменение перспективы во время прокрутки. Чтобы исправить это, вы можете добавить элемент с position: fixed, это переключит Edge на прокрутку без использования ОС и гарантирует учет изменений перспективы.</li>
+    <li>«Содержание страницы стало просто огромным!». Многие браузеры учитывают масштаб при определении размера страницы, но, к сожалению, Chrome и Safari не учитывают перспективу. При масштабе — скажем — 3x, примененном к элементу, вы можете хорошо видеть полосы прокрутки и т.п., даже если элемент находится в масштабе 1x после применения перспективы. Можно обойти эту проблему, масштабируя элементы из нижнего правого угла (transform-origin: bottom right). Это работает, потому что заставляет элементы расти в «отрицательную область».</li>
+</ul>
+
+<h3>Заключение</h3>
+
+<p>Параллакс — забавный эффект при вдумчивом использовании. Как вы могли убедиться, существует производительный, кросс-браузерный и связанный со прокруткой способ его реализации. Поскольку для достижения желаемого эффекта требуется немного математики и небольшое количества шаблонов, мы обернули это решение в небольшую вспомогательную библиотеку и пример, которые вы можете найти в
+    <a href="https://github.com/GoogleChromeLabs/ui-element-samples/tree/gh-pages/parallax">нашем репозитории UI Element Samples</a>.
+</p>
+<p>Поиграйте, и дайте нам знать, что получится.
+</p>
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html" data-media="images/html-css/2018/2018-05-15-proizvoditelnyy-parallaks/1.jpg" data-title="Производительный параллакс">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-17-css-cveta.html">CSS цвета</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html.html">Как создать div блок с прокруткой?</a></li>
+									
+								
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-14-kak-sozdat-adaptivnuyu-setku.html">Как создать адаптивную сетку</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-01-20-obzor-materinskoj-platy-asus-rog-maximus-x-apex.html">Обзор материнской платы ASUS ROG MAXIMUS X APEX</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

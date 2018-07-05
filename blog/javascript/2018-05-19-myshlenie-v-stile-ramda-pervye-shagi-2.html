@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Мышление в стиле Ramda - частичное применение (каррирование) | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="Данный пост — это вторая часть серии статей о функциональном программировании под названием «Мышление в стиле Ramda».">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">19/05/2018</span>
+
+							<h1>Мышление в стиле Ramda - частичное применение (каррирование)</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2/1.jpg" data-title="Мышление в стиле Ramda - частичное применение (каррирование)">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">Мышление в стиле Ramda - частичное применение (каррирование)</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+  Я нашёл Ramda прекрасно спроектированной библиотекой, которая предоставляет множество инструментов для чистого и элегантного функционального программирования в JavaScript.
+</blockquote>
+
+<p>К примеру, давайте скажем, что мы имееем коллекцию объектов книг и мы хотим найти названия всех книг, опубликованных в определённый год. Давайте решим эту проблему, используя только итерирующие функции Ramda:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span>
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Будет хорошо, если мы совместим filter и map в конвеер, но мы не знаем как это сделать, потому что filter и map принимают два аргумента.</p>
+<p>Также будет хорошо, если нам не будет нужно использовать стрелочные функции в filter. Давайте решим сначала эту проблему, так как это позволит узнать нам некоторые вещи, которые мы можем использовать при создании конвееров:</p>
+
+<h3>Функции высшего порядка</h3>
+
+<p>В первой части этой серии мы говорили о функциях как о конструкциях первого класса. Подобные функции могут быть переданы как параметры другим функциям и возвращены в качестве результата от других функций. Мы делали много из первого, но ещё не применяли последнее.</p>
+
+<p>Функции, которые принимают или возвращают другие функции, также называются «функциями высшего порядка.</p>
+
+<p>В примере выше мы передаём стрелочную функцию в filter: book => publishedInYear(book, year), и хорошо бы избавиться от неё. Для того чтобы сделать это, нам нужна функция, которая принимает книгу и возвращает true, если книга была опубликована в нужный год. Но также нам необходимо передать и номер года, чтобы сделать её гибкой.</p>
+<p>Способ, которым мы можем решить эту проблему — это создание функции, которая вернёт другую функцию. Я напишу это на обычном синтаксисе функций, чтобы вы понимали, что здесь происходит, но далее мы перейдём к более короткой версии со стрелочным синтаксисом:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Полная версия функции</span>
+<span class="kd">function</span> <span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">book</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Стрелочная версия:</span>
+<span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">year</span> <span class="o">=&gt;</span> <span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span></code></pre></figure>
+
+<p>Это новая версия функции publishedInYear, мы можем переписать вызов filter, исключив стрелочную функцию:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">year</span> <span class="o">=&gt;</span> <span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>
+  Теперь, когда мы вызывем filter, publishedInYear(year) немедленно вызывается и возвращает функцию, которая берёт книгу, что как раз и нужно для filter.
+</p>
+
+<h3>Частично примененяемые функции</h3>
+
+<p>
+  Мы можем переписать функцию с несколькими аргументами подобным образом, если пожелаем, но не все наши функции должны так работать. Также, мы можем пожелать использовать функции с несколькими аргументами обычным образом.
+  К примеру, если бы у нас был какой-то другой код, который бы просто хотел проверить, что книга опубликована в определённом году, мы бы хотели написать например так: publishedInYear(book, 2012), но мы не можем писать подобным образом. Вместо этого, нам придётся написать немного по другому: publishedInYear(2012)(book). Это менее читабельно и более раздражительно.</p>
+<p>К счастью, Ramda предоставляет две функции, чтобы помочь нам в этом: partial и partialRight.</p>
+
+<p>Эти две функции позволяют вызывать другую функцию с меньшим числом аргументов, которые ей необходимы. Они оба возвращают новую функцию, которая будет принимать оставшиеся аргументы и вызывать оригинальную функцию уже тогда, когда все аргументы были предоставлены.
+</p>
+
+<p>Разница между partial и partialRight в том, что аргументы, которые мы поставляем, будут подставляться самыми левыми или самыми правыми аргументами, необходимыми для оригинальной функции.
+</p>
+
+<p>Давайте вернёмся назад к нашему оригинальному примеру и попробуем использовать эти функции вместо переписывания publishedInYear. Посколько нам нужно предоставить только год, и это самый правый аргумент, нам нужно использовать partialRight:
+</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">partialRight</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">,</span> <span class="p">[</span><span class="nx">year</span><span class="p">]),</span> <span class="nx">books</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Если бы мы написали publishedInYear, принимающей (year, book) вместо (book, year), мы бы использовали partial вместо partialRight.</p>
+
+<p>Обратите внимание, что аргументы, которые мы передаём в partial и partialRight, всегда должны быть в массиве, даже если вы передаёте туда только один из них. Я не могу сказать, сколько раз я забывал об этом и получал сбивающее с толку сообщение об ошибке:</p>
+
+<h3>Каррирование</h3>
+
+<p>Необходимость использовать partial и partialRight везде приводит к многословию и утомлению. Но необходимость вызывать функции с многими аргументами как серию одно-аргументных функций давноценно плоха.
+</p>
+
+<p>К счастью, Ramda предоставляет нам решение: каррирование.</p>
+
+<p>curry — это другая основная концепция функционального программирования. Технически, каррированная функция — это всегда серия одно-аргументных функций, о которых я только что жаловался. В чистых функциональных языках, ситаксис выглядит таким образом, что у него нет отличия от вызова функций с нескольмими аргументами.</p>
+
+<p>Но потому что Ramda — это JavaScript библиотека, и JavaScript не имеет хорошего синтаксиса для вызова серии одно-аргументных функций, авторы немного смягчили традиционное определение каррирования.</p>
+
+<p>В Ramda, каррированная функция может быть вызвана с подмножеством её аргументов, и она вернёт новую функцию, которая будет ожидать получения оставшихся аргументов. Если вы вызываете каррированную функцию со всеми её аргументами, это спровоцирует обычный вызов функции.</p>
+
+<p>Вы можете думать о каррированных функциях как о лучшем из двух миров: вы можете вызывать их со всеми аргументами, и они будут просто работать. Или же вы можете вызвать их с частью аргументов, и они будут работать в режиме частичного применения.</p>
+
+<p>Давайте применим возможности каррирования к нашей функции publishedInYear. Обратите внимание, что каррирование всегда работает так, как если бы мы использовали функцию partial, и здесь нет возможности использовать версию, подобную partialRight. Далее мы ещё немного поговорим на эту тему, но сейчас мы просто изменим аргументы на обратный порядок в publishedInYear, чтобы год стал идти первым.
+</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">year</span><span class="p">,</span> <span class="nx">book</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Теперь мы можем единожды вызвать publishedInYear только с годом и получить назад функцию, которая будет брать книгу и вызывать нашу оригинальную функцию. Тем не менее, мы всё ещё можем вызывать обычным образом publishedInYear(2012, book) без раздражающего )( синтаксиса. Лучшее из двух миров!</p>
+
+<h3>Порядок аргументов</h3>
+<p>Обратите внимание на то, что для того чтобы сделать каррирование работающим для нас, нам необходимо обратить порядок аргументов. Это чрезвычайно распространено в функциональном программировании, так что почти каждая функция Ramda написана так, что данные, с которыми она в конечном счёте работает, идут самыми последними в списке аргументов.
+  Вы можете думать о первых параметрах как о конфигурации для операции. Так, для publishedInYear, параметр года — это конфигурация (что мы ищем?), а параметр книги — это данные (где мы ищем?).
+  Мы уже видели примеры этого с итерирующими функциями. Они все использовали коллекцию в качестве последнего аргумента, потому что это делает данный стиль программирования более простым.
+</p>
+
+<h3>Аргументы в некорректном порядке</h3>
+
+<p>Что если мы оставим порядок аргументов функции publishedInYear без изменений? Как мы можем всё ещё получить пользу от природы каррирования?
+  Ramda предоставляет несколько вариантов.</p>
+
+<h3>Flip</h3>
+
+<p>Первый вариант — это flip. Flip берёт функцию с двумя и более аргументами и возвращает новую функцию, которая берёт те же аргументы, но меняет местами первые два аргумента. В большинстве случаев она используется с двух-аргументными функциями, но является более общей в применении.
+  Используя flip, мы можем вернуться к оригинальному порядку аргументов для publishedInYear:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">book</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">flip</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">)(</span><span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>В большинстве случаев, я бы предпочёл использовать более удобный порядок аргументов, но, к примеру, если вам необходимо использовать такую функцию, которую вы не контроллируете, то flip — это полезный вариант.</p>
+
+<h3>Заполнитель</h3>
+
+<p>Более общий вариант — это аргумент „заполнитель“ (__).</p>
+
+<p>Что если мы имеем каррированную функцию с тремя аргументами, и желаем передать первый и последний аргументы, оставляя тот, который посередине — на будущее? Мы можем использовать заполнитель для серединного аргумента:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">threeArgs</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">middleArgumentLater</span> <span class="o">=</span> <span class="nx">threeArgs</span><span class="p">(</span><span class="s1">'value for a'</span><span class="p">,</span> <span class="nx">__</span><span class="p">,</span> <span class="s1">'value for c'</span><span class="p">)</span></code></pre></figure>
+
+<p>Мы также можем использовать заменитель более одного раза в вызове. К примеру, что если мы хотим передать только серединный аргумент?</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">threeArgs</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">middleArgumentOnly</span> <span class="o">=</span> <span class="nx">threeArgs</span><span class="p">(</span><span class="nx">__</span><span class="p">,</span> <span class="s1">'value for b'</span><span class="p">,</span> <span class="nx">__</span><span class="p">)</span></code></pre></figure>
+
+<p>Мы можем использовать стиль заполнителя вместо flip, если хотим:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">book</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">__</span><span class="p">,</span> <span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Я нахожу эту версию более читабельной, но если мне нужно многократно использовать „перевёрнутую“ версию publishedInYear, я могу определить дополнительную функцию, используя flip и далее использовать её везде. Возможно, вы увидите несколько примеров в будущих постах.
+  Обратите внимание, что __ работает только с каррированными функциями, когда partial, partialRight и flip работают с любой функцией. Если вам необходимо использовать __ с нормальной функцией, вы всегда можете обернуть её вызовом curry перед этим.</p>
+
+<h3>Давайте сделаем конвеер</h3>
+
+<p>Давайте посмотрим, как мы можем переместить наши вызовы filter и map внутрь конвеера. Это текущее состояние кода, с удобным порядком аргументов для publishedInYear:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">year</span><span class="p">,</span> <span class="nx">book</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">),</span> <span class="nx">books</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nx">selected</span><span class="p">)</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Мы узнали о pipe и compose в прошлом посте, но нам необходимо узнать ещё один кусочек информации, чтобы получить полную пользу из этого изучения.</p>
+
+<p>Последний кусочек информации следующий: почти каждая Ramda функция каррирована по умолчанию. Это включает в себя filter и map. Так что filter(publishedInYear(year)) прекрасно подходит и возвращает новую функцию, которая просто ожидает, когда её будут переданы книги впоследствии, также как и map(book => book.title).</p>
+
+<p>И теперь мы можем написать конвеер:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">year</span><span class="p">,</span> <span class="nx">book</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="nx">pipe</span><span class="p">(</span>
+    <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">)),</span>
+    <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span>
+  <span class="p">)(</span><span class="nx">books</span><span class="p">)</span></code></pre></figure>
+
+<p>Давайте сделаем шаг вперёд и перевернём аргументы для titlesForYear для соответствия соглашениям Ramda о данных, идущих последними. Мы также можем каррировать функцию, чтобы позволить использовать её в последующих конвеерах.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">const</span> <span class="nx">publishedInYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">year</span><span class="p">,</span> <span class="nx">book</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">year</span> <span class="o">===</span> <span class="nx">year</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">titlesForYear</span> <span class="o">=</span> <span class="nx">curry</span><span class="p">((</span><span class="nx">year</span><span class="p">,</span> <span class="nx">books</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="nx">pipe</span><span class="p">(</span>
+    <span class="nx">filter</span><span class="p">(</span><span class="nx">publishedInYear</span><span class="p">(</span><span class="nx">year</span><span class="p">)),</span>
+    <span class="nx">map</span><span class="p">(</span><span class="nx">book</span> <span class="o">=&gt;</span> <span class="nx">book</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span>
+  <span class="p">)(</span><span class="nx">books</span><span class="p">)</span>
+<span class="p">)</span></code></pre></figure>
+
+<h3>Заключение</h3>
+
+<p>Данный пост, возможно — самая глубокая часть из этой серии статей. Частичное применение и каррирование может занять некоторое время и силы, чтобы уложиться в голове. Но когда вы однажды „получите“ их, они познакомят вас с очень мощным способом преобразования данных в функциональном стиле.
+  Они заставляют нас производить преобразования на основе конвееров, состоящих из маленьких простых строительных блоков.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html" data-media="images/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2/1.jpg" data-title="Мышление в стиле Ramda - частичное применение (каррирование)">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html">JavaScript Async/Await за 10 минут</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

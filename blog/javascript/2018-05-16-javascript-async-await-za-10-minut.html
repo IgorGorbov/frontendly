@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>JavaScript Async/Await за 10 минут | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="В течение долгого времени разработчикам JavaScript приходилось полагаться на колбэки для работы с асинхронным кодом. В результате многие из нас испытали на себе то, что принятно называть "callback hell"">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/javascript/2018/2018-05-16-javascript-async-await-za-10-minut/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/javascript/2018/2018-05-16-javascript-async-await-za-10-minut/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/javascript" class="page-category-link">JavaScript</a> <span class="date">16/05/2018</span>
+
+							<h1>JavaScript Async/Await за 10 минут</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html" data-media="http://frontendly.ru/images/javascript/2018/2018-05-16-javascript-async-await-za-10-minut/1.jpg" data-title="JavaScript Async/Await за 10 минут">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/javascript">JavaScript</a></li>
+								<li class="active">JavaScript Async/Await за 10 минут</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+  Async/Await - это долгожданная функция JavaScript, которая делает работу с асинхронными функциями более приятной и понятной. Он построен поверх Promises и совместим со всеми существующими API-интерфейсами на основе Promise.
+</blockquote>
+
+<h3>Что такое Async/Await?</h3>
+
+<p>Название происходит от async и await - двух ключевых слов, которые помогут нам очистить наш асинхронный код:</p>
+
+
+<p>async - объявляет асинхронную функцию (async function someName(){...})</p>
+<ul>
+  <li>Автоматически преобразует обычную функцию в Promise.</li>
+  <li>Функции async резолвят (resolve) всё, что возвращается в их теле.</li>
+  <li>Асинхронные функции позволяют использовать await.</li>
+</ul>
+
+<p>await - приостанавливает выполнение функции (let result = await someAsyncCall();)</p>
+
+<ul>
+  <li>Когда await помещен перед вызовом Promise, await приостанавливает выполнение кода, следующего за ним, заставляя скрипт ждать возвращения результата выполняемого Promise'а.</li>
+  <li>await работает только с Promise'ами, он не работает с обычными колбэками.</li>
+  <li>await может использоваться только внутри асинхронных функций.</li>
+</ul>
+
+<p>Вот простой пример, который, надеюсь, прояснит ситуацию:
+
+  Предположим, мы хотим получить некоторый JSON-файл с сервера. Мы напишем функцию, которая использует библиотеку axios и отправляет HTTP-запрос GET для
+  <a href="https://tutorialzine.com/misc/files/example.json">https://tutorialzine.com/misc/files/example.json</a></p>
+
+<p>Для его получения, мы должны ждать ответа от сервера, поэтому, естественно, HTTP-запрос будет асинхронным.</p>
+
+<p>Ниже мы видим, что одна и та же функция реализована дважды. Сначала с Promise, затем второй раз с использованием Async/Await.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Вариант с Promise</span>
+
+<span class="kd">function</span> <span class="nx">getJSON</span><span class="p">(){</span>
+  <span class="c1">// Чтобы блокировать функцию, создаем Promise</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s1">'https://tutorialzine.com/misc/files/example.json'</span><span class="p">)</span>
+
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Ответ от сервера доступен в блоке .then</span>
+      <span class="c1">// Возвращаем результат с помощью функции resolve</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+    <span class="p">});</span>
+
+  <span class="p">})</span>
+<span class="p">}</span></code></pre></figure>
+
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Вариант Async/Await</span>
+<span class="c1">// Ключевое слово async автоматически создаст новый Promise и возвратит его</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getJSONAsync</span><span class="p">(){</span>
+  <span class="c1">// Ключевое слово await позволяет нам не писать блок .then</span>
+  <span class="kd">let</span> <span class="nx">json</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s1">'https://tutorialzine.com/misc/files/example.json'</span><span class="p">);</span>
+  <span class="c1">// Ответ на GET запрос сохранен в переменной json</span>
+  <span class="c1">// Возвращаем его как в обычной синхронной функции</span>
+  <span class="k">return</span> <span class="nx">json</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Явно, что версия на Async/Await короче и читается легче. Помимо используемого синтаксиса обе функции идентичны - они обе возвращают Promise и резолвятся с JSON ответом от axios. Мы можем вызвать async функцию вот так:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">getJSONAsync</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Сделать что-нибудь с результатом.</span>
+<span class="p">});</span></code></pre></figure>
+
+<h3>Итак, делает ли Async/Await устаревшими Promise'ы?</h3>
+
+<p>Нет. При работе с Async/Await мы все еще используем Promise под капотом. Хорошее понимание Promise'ов, на самом деле, очень рекомендуется и поможет вам в долгосрочной перспективе.
+</p>
+
+<p>Есть даже случаи, когда Async/Await не сокращают код, и приходится возвращаться к Promise за помощью. Один из таких случаев - это когда нам нужно сделать несколько независимых асинхронных вызовов и дождаться их завершения.</p>
+
+<p>Если мы попытаемся сделать это с помощью async и ожидаем, произойдет следующее:</p>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">async</span> <span class="kd">function</span> <span class="nx">getABC</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">A</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getValueA</span><span class="p">();</span> <span class="c1">// getValueA займет 2 секунды</span>
+  <span class="kd">let</span> <span class="nx">B</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getValueB</span><span class="p">();</span> <span class="c1">// getValueB займет 4 секунды</span>
+  <span class="kd">let</span> <span class="nx">C</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getValueC</span><span class="p">();</span> <span class="c1">// getValueC займет 3 секунды</span>
+
+  <span class="k">return</span> <span class="nx">A</span><span class="o">*</span><span class="nx">B</span><span class="o">*</span><span class="nx">C</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Каждый вызов await будет ждать, пока предыдущий не вернет результат. Поскольку мы выполняем один вызов за раз, вся функция займет 9 секунд от начала до конца (2 + 4 + 3).
+
+</p>
+
+<p>Это не оптимальное решение, так как три переменные A, B и C не зависят друг от друга. Другими словами, нам не нужно знать значение A до того, как мы получим B. Мы можем получить их в одно и то же время и уменьшить время ожидания.</p>
+
+<p>Чтобы отправить все запросы одновременно, требуется Promise.all(). Это позволит убедиться, что у нас есть все результаты, прежде чем продолжить, но асинхронные вызовы будут запускаться параллельно, а не один за другим.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">async</span> <span class="kd">function</span> <span class="nx">getABC</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Promise.all() позволяет выполнить все функции одновременно</span>
+
+  <span class="kd">let</span> <span class="nx">results</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span> <span class="nx">getValueA</span><span class="p">,</span> <span class="nx">getValueB</span><span class="p">,</span> <span class="nx">getValueC</span> <span class="p">]);</span>
+
+  <span class="k">return</span> <span class="nx">results</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">total</span><span class="p">,</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">total</span> <span class="o">*</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Таким образом, функция займет гораздо меньше времени. Вызовы getValueA и getValueC будут уже завершены к концу getValueB. Таким образом мы сокращаем время исполнения скрипта до времени самого медленного (getValueB()), а не суммы всех взятых.</p>
+
+<h3>Обработка ошибок в Async/Await</h3>
+
+<p>Еще одна отличная вещь в Async/Await заключается в том, что она позволяет нам обнаруживать любые неожиданные ошибки в старом блоке try/catch. Нам просто нужно обернуть наши await следующим образом:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">async</span> <span class="kd">function</span> <span class="nx">doSomethingAsync</span><span class="p">(){</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+  <span class="c1">// Этот запрос может вызваться с ошибкой</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">someAsyncCall</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Если была ошибка - перехват ошибки будет тут</span>
+  <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>Блок catch будет обрабатывать ошибки, вызванные ожидаемыми (await) асинхронными вызовами или любым другим падающим с ошибкой кодом, который мы запишем внутри блока try.</p>
+
+<p>Если нужно, мы также можем перехватить ошибки при выполнении функции async. Поскольку все функции async возвращают Promise'ы, мы можем просто включить обработчик события .catch() при их вызове.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Async функция без блока try/catch</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">doSomethingAsync</span><span class="p">(){</span>
+  <span class="c1">// Этот асинхронный запрос может вызвать ошибку</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">someAsyncCall</span><span class="p">();</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Перехватываем ошибку при вызове функции</span>
+<span class="nx">doSomethingAsync</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">successHandler</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">errorHandler</span><span class="p">);</span></code></pre></figure>
+
+<p>Важно выбрать, какой метод обработки ошибок вы предпочитаете, и придерживаться его. Использование try/catch и .catch() одновременно, скорее всего, приведет к проблемам.</p>
+
+<h3>Поддержка браузерами</h3>
+
+<p>Async/Await уже доступен в большинстве основных браузеров. Исключение составляет только IE11 - все остальные производители поймут ваш код на async/await без необходимости использования полифилов.</p>
+<p>Можно убедиться в этом по ссылке <a href="http://caniuse.com/#search=await">http://caniuse.com/#search=await</a>.</p>
+
+<p>  Если же такая совместимость вам не подходит, тогда всегда можно прибегнуть к транспайлерам вроде Babel или TypeScript.</p>
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html" data-media="images/javascript/2018/2018-05-16-javascript-async-await-za-10-minut/1.jpg" data-title="JavaScript Async/Await за 10 минут">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+									<li><a href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html">Мышление в стиле Ramda - первые шаги</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html">Мышление в стиле Ramda - частичное применение (каррирование)</a></li>
+									
+								
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-16-async-function.html">Async function в JavaScript</a></li>
+									
+								
+									
+									<li><a href="/blog/javascript/2018-05-13-react-i-es6-chast-4-miksiny-react-ispolzuyushchie-es6.html">React и ES6 - Часть 4, Миксины React использующие ES6</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

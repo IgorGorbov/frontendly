@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<base href="/">
+
+	<title>Введение в CSS Grid | Frontendly - Cтатьи и новости из мира Front-end</title>
+	<meta name="description" content="CSS Grid — первая реальная система построения сеток. Она предназначена для размещения контента как в столбцах, так и в строках, и, наконец, дает разработчикам почти неограниченный контроль над элементами на экране.">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Template Basic Images Start -->
+	<meta property="og:image" content="images/html-css/2018/2018-05-25-vvedenie-v-css-grid/1.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<!-- Template Basic Images End -->
+	
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#202225">
+	<!-- Custom Browsers Color End -->
+
+	<link rel="stylesheet" href="css/main.min.css">
+
+</head>
+
+<body class="ispage">
+
+<header class="top-line">
+
+	<a href="/" class="logo logo-litera">Frontendly</a>
+
+	<div class="search-wrap">
+		<div class="search" title="Поиск по сайту..."><div class="fa fa-search"></div></div>
+		<div class="search-field">
+			<form action="/search.html" id="cse-search-box" method="get">
+				<input type="hidden" name="cx" value="partner-pub-xxx:xxx" />
+				<input type="hidden" name="cof" value="FORID:10" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" id="search-box" name="query" placeholder="Поиск по сайту..." />
+			</form>
+		</div>
+	</div>
+
+	<div class="mobile-menu-button"><i class="fa fa-bars"></i> Меню</div>
+	<nav class="main-menu top-menu">
+<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+	</nav>
+	<div class="preloader"><div class="pulse"></div></div>
+</header>
+
+	<header class="page-header overlay" style="background-image: url(images/html-css/2018/2018-05-25-vvedenie-v-css-grid/1.jpg)">
+
+		<div class="page-header-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 col-md-8">
+
+						<div class="page-header-meta">
+
+							<a href="blog/html-css" class="page-category-link">HTML & CSS</a> <span class="date">25/05/2018</span>
+
+							<h1>Введение в CSS Grid</h1>
+
+ <br>
+
+							<div class="item-social">
+								<div class="item-comments" title="Количество комментариев">
+									<i class="fa fa-comment"></i><a href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread" class="item-comments-count"></a>
+								</div>
+								<div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+								<div class="likely likely-custom" data-url="http://frontendly.ru/blog/html-css/2018-05-25-vvedenie-v-css-grid.html" data-media="http://frontendly.ru/images/html-css/2018/2018-05-25-vvedenie-v-css-grid/1.jpg" data-title="Введение в CSS Grid">
+									<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+									<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+									<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="article-content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<article class="main-article">
+
+						<nav class="breadcrumbs">
+							<ul>
+								<li><a href="/">Главная</a></li>
+								<li><a href="blog/html-css">HTML & CSS</a></li>
+								<li class="active">Введение в CSS Grid</li>
+							</ul>
+						</nav>
+
+						<div class="article-body">
+
+							<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+							</div>
+
+							<blockquote>
+    С помощью CSS Grid веб станет гораздо более красивым, чем то, к чему мы привыкли....
+</blockquote>
+
+
+<p>CSS Grid — первая реальная система построения сеток. Она предназначена для размещения контента как в столбцах, так и в строках, и, наконец, дает разработчикам почти неограниченный контроль над элементами на экране. Это означает, что мы можем, наконец, избавиться от многолетних хаков и обходных решений для размещения элементов на веб-странице — в конечном счете это означает, что сложные макеты теперь не только возможно реализовывать, но и легко поддерживать.</p>
+
+<p>Хорошо, но как работает CSS Grid? Есть много сложных и ужасно подробных руководств, но я думаю, что мы должны начать с самых основ. То, что мы будем делать здесь, является относительно простой задачей размещения букв алфавита на странице.</p>
+
+<p>Для начала добавим разметку:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'wrapper'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        A
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        B
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>Стилизуем эти буквы с помощью свойств font-size и color и центрируем в блоке с помощью свойств flexbox align-items и justify-content. И да, это правильно! CSS Grid не заменяет свойства flexbox, он дополняет то, что они уже делают. Мы можем использовать многие из этих свойств в сочетании с CSS Grid. Но сейчас вернемся к демонстрации:</p>
+
+<img src="images/html-css/2018/2018-05-25-vvedenie-v-css-grid/2.png" alt="grid-1">
+
+<p>В примере выше у нас есть два простых div’а, расположенных друг под другом, потому что они по умолчанию — display: block. Установим для родительского элемента display: grid:</p>
+
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Вы можете увидеть, что ничего не произошло. И вы будете правы! В отличие от display: inline-block; или display: inline; не совсем ясно, что происходит, когда мы устанавливаем свойство display в grid. Фактически, чтобы заставить нашу сетку что-то делать, нам сначала нужно задать ей определенное количество столбцов или строк. Выровняем буквы рядом друг с другом в два столбца:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+    <span class="py">grid-column-gap</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="jBmKVK" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 1" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/jBmKVK/">Type Specimen Grid Demo – 1</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Давайте разберем эти новые строки кода. Сначала мы создаем два столбца нашей сетки с помощью grid-template-columns. Значение 1fr может показаться странным, если вы никогда его раньше не видели, но это валидная единица измерения в CSS, которая сообщает каждой колонке, что она будет занимать одну часть сетки. В нашем случае это означает, что сетка будет иметь два столбца равной ширины.</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="ZeKRKw" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 2" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/ZeKRKw/">Type Specimen Grid Demo – 2</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Ура! Оно работает. Видите небольшой зазор между буквами? Это цвет фона, выглядывающий из-под блоков, поскольку мы задали значение свойства grid-column-gap 1px. Обычно задается больший зазор, особенно, для текстовых блоков, но в нашем случае достаточно и одного пикселя.</p>
+
+<p>А что произойдет, если добавить две новые буквы в разметку? Как это изменит страницу?</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'wrapper'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        A
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        B
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        C
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'letter'</span><span class="nt">&gt;</span>
+        D
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>Ну, технически это не изменит сетку — мы уже сказали, что она будет иметь две колонки, поэтому новые буквы будут расположены под ними.</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="gmWKGx" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 3" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/gmWKGx/">Type Specimen Grid Demo – 3</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Странная вещь — почему нет зазора в 1px между буквами A и C или между B и D? Все правильно, свойство grid-column-gap устанавливает зазор только между столбцами. Чтобы исправить это, можно добавить свойство grid-row-gap:</p>
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="py">grid-column-gap</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="py">grid-row-gap</span><span class="p">:</span> <span class="m">1px</span><span class="p">;</span>
+    <span class="c">/* прочие стили */</span>
+    <span class="c">/* можно использовать сокращение ‘grid-gap’ */</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Теперь наш пример выглядит та:</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="LWyrOG" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 4" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/LWyrOG/">Type Specimen Grid Demo – 4</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Мы создали нашу первую сетку. Но давайте просто изучим наши колонки немного подробнее. Что произойдет, если мы добавим другое значение в свойство grid-template-columns? Например:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">wrapper</span> <span class="p">{</span>
+    <span class="nx">grid</span><span class="o">-</span><span class="nx">template</span><span class="o">-</span><span class="nx">columns</span><span class="p">:</span> <span class="mi">1</span><span class="nx">fr</span> <span class="mi">1</span><span class="nx">fr</span> <span class="mi">1</span><span class="nx">fr</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Ну, добавится еще одна колонка, конечно же! Обратите внимание, как мы теперь можем четко видеть фон обертки, потому ничто не закрывает его:</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="QpvxOB" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 5" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/QpvxOB/">Type Specimen Grid Demo – 5</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Если мы изменим значение fr в свойстве grid-template-columns, это создаст так называемую асимметричную сетку. Предположим, что мы бы хотели, чтобы наш первый столбец занимал втрое больше места, чем два других столбца:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">3</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Столбцы A и D стали шире остальных столбцов, как и ожидалось:</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="XMRYzv" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 6" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/XMRYzv/">Type Specimen Grid Demo – 6</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Разве это не мощно? Больше не нужно беспокоиться об отрицательных отступах или идеальных значениях в процентах, чтобы выровнять колонки. Мы можем создавать суперсложные сетки без необходимости делать какие-либо математические вычисления, которые мы были вынуждены делать раньше. Теперь нам просто нужно добавить новое значение в свойство grid-template-columns и вуаля, новый столбец появляется как по волшебству!</p>
+
+<p>Но как насчет адаптивных сеток, спросите вы? Это действительно так же просто, как изменить свойство в медиа-запросе. Предположим, что мы хотим по умолчанию видеть 2 столбца, на экранах больше 500 пикселей мы хотим 3 столбца, и, наконец, на больших экранах мы разместить все содержимое в 4 столбца. Все, что нам нужно написать, это:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+
+    <span class="err">@media</span> <span class="err">screen</span> <span class="err">and</span> <span class="err">(</span><span class="nl">min-width</span><span class="p">:</span> <span class="m">500px</span><span class="p">)</span> <span class="err">{</span>
+        <span class="n">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+<span class="p">}</span>
+
+    <span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">)</span> <span class="p">{</span>
+        <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="err">}</span></code></pre></figure>
+
+<p>Откройте демо в отдельной вкладке и убедитесь, что адаптивная магия работает!</p>
+
+<img src="images/html-css/2018/2018-05-25-vvedenie-v-css-grid/3.gif" alt="grid-2">
+
+<p>Свойство grid-template-columns намного сложнее, чем показано здесь, но и это отличная отправная точка. Далее мы должны подробнее познакомиться с другим важным свойством в спецификации CSS Grid: grid-template-rows.</p>
+
+<p>Хорошо, давайте сделаем это. Ниже приведен небольшой фрагмент кода. С учетом того, что вы раньше не сталкивались с CSS Grid, попробуйте догадаться, что делает свойство grid-template-rows:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.wrapper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">3</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
+    <span class="py">grid-template-rows</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">3</span><span class="n">fr</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Это свойство устанавливает высоту строк и их взаимосвязь друг относительно друга. Если у нас есть две строки, как в нашем предыдущем демо, а последний блок установлен в 3fr, это означает, что высота второй строки всегда будет в три раза больше высоты первой:</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="dvWKdp" data-default-tab="css,result" data-user="robinrendle" data-embed-version="2" data-pen-title="Type Specimen Grid Demo – 8" class="codepen">See the Pen <a href="https://codepen.io/robinrendle/pen/dvWKdp/">Type Specimen Grid Demo – 8</a> by Robin Rendle (<a href="https://codepen.io/robinrendle">@robinrendle</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<p>Это может выглядеть довольно просто, но раньше мы не могли этого сделать. Нам приходилось писать хаки, такие как установка минимальной высоты для определенного элемента или изменение имени класса. Но мы никогда не могли задать отношения между строками; вот что делает CSS Grid таким мощным.</p>
+
+<p>Даже благодаря такому небольшому количеству знаний и нескольким новым свойствам мы можем создавать сказочно сложные макеты — асимметричные и адаптивные сетки — это еще не все.</p>
+
+<p>Весь код в примерах выше выглядит на первый взгляд очень странно. Но с ним теряют актуальность и гигантские CSS-фреймворки, и целый набор старых хаков. CSS Grid позволяет нам взглянуть на пространство внутри браузера совершенно по-новому.</p>
+
+<p>Нам придется изучить кучу новых свойств и полностью переосмыслить то, что мы знали раньше. Поэтому CSS Grid — это не только спецификация, а целая философия.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+
+
+
+
+
+
+						</div>
+ <br>
+						<div class="likely-on-page">
+							<div class="likely" data-url="http://frontendly.ru/blog/html-css/2018-05-25-vvedenie-v-css-grid.html" data-media="images/html-css/2018/2018-05-25-vvedenie-v-css-grid/1.jpg" data-title="Введение в CSS Grid">
+								<div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+								<div class="facebook" title="Поделиться в Facebook">Facebook</div>
+								<div class="twitter" title="Поделиться в Twitter">Twitter</div>
+								<div class="odnoklassniki" title="Класснуть">Класснуть</div>
+								<div class="gplus" title="Плюсануть">Плюсануть</div>
+							</div>
+						</div>
+
+						<div class="ad article-top-ad">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:block"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"-->
+<!--data-ad-format="auto"></ins>-->
+<!--<script>-->
+	<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+						</div>
+
+						<div class="read-more">
+							<div class="read-more-header">Читать еще:</div>
+							<ul>
+								
+								
+								
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-17-css-cveta.html">CSS цвета</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html.html">Как создать div блок с прокруткой?</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html">Производительный параллакс</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-05-14-kak-sozdat-adaptivnuyu-setku.html">Как создать адаптивную сетку</a></li>
+									
+								
+									
+									<li><a href="/blog/html-css/2018-01-20-obzor-materinskoj-platy-asus-rog-maximus-x-apex.html">Обзор материнской платы ASUS ROG MAXIMUS X APEX</a></li>
+									
+								
+							</ul>
+						</div>
+
+						<div class="comments">
+
+<div id="disqus_thread"></div>
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://frontendly-ru.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+						</div>
+
+					</article>
+
+				</div>
+
+				<div class="col-md-4">
+
+<aside class="main-aside">
+
+	<div class="aside-box">
+<!--<ins class="adsbygoogle"-->
+<!--style="display:inline-block;width:300px;height:600px"-->
+<!--data-ad-client="ca-pub-xxx"-->
+<!--data-ad-slot="xxx"></ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+	</div>
+
+	<div class="aside-box">
+
+<div class="latest-box">
+
+	<div class="lb-header">Последние статьи:</div>
+
+	<div class="lb-list">
+
+		<div class="lb-item">
+			<a href="blog/javascript/" class="lb-catname">JavaScript</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html">Введение в каррирование в JavaScript</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html#disqus_thread"></a>
+						<span class="date">20/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/it-news/" class="lb-catname">Новости IT</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html">HyperX Predator DDR4 RGB с синхронизацией подсветки через ИК</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/it-news/2018-01-20-hyperx-predator-ddr4-rgb-s-sinhronizaciej-podsvetki.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/html-css/" class="lb-catname">HTML & CSS</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html">Введение в CSS Grid</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/html-css/2018-05-25-vvedenie-v-css-grid.html#disqus_thread"></a>
+						<span class="date">25/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/design/" class="lb-catname">Дизайн</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html">10 удобных решений, хитростей и приемов для использования планшета</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/design/2018-01-20-10-udobnyh-reshenij-dlya-ispolzovaniya-plansheta.html#disqus_thread"></a>
+						<span class="date">20/01/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+
+		<div class="lb-item">
+			<a href="blog/other/" class="lb-catname">Другое</a>
+			<div class="lb-body">
+
+				
+				<a class="lb-item-header" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html">Cайт на GitHub Pages при помощи Jekyll</a>
+				<div class="lb-footer">
+					<div class="item-comments" title="Количество комментариев">
+						<i class="fa fa-comment"></i><a class="item-comments-count" href="/blog/other/2018-05-09-besplatnyy-sayt-na-github-pages-pri-pomoshchi-jekyll.html#disqus_thread"></a>
+						<span class="date">09/05/2018</span>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+	</div>
+
+	<div class="aside-box">
+<div id="vk_groups"></div>
+	</div>
+
+	<div class="aside-box">
+<div class="latest-comments">
+	<div class="lb-header">Последние комментарии:</div>
+	<script type="text/javascript" src="https://frontendly-ru.disqus.com/recent_comments_widget.js?num_items=4&amp;hide_avatars=0&amp;avatar_size=26&amp;excerpt_length=150"></script>
+</div>
+
+	</div>
+
+</aside>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer class="main-footer">
+		<div class="contaiter">
+
+			<nav class="main-menu footer-menu">
+	<ul>
+	<li><a href="blog/javascript/">JavaScript</a></li>
+	<li><a href="blog/html-css/">Html&Css</a></li>
+	<li><a href="blog/design/">Дизайн</a></li>
+	<li><a href="blog/it-news/">Новости</a></li>
+	<li><a href="blog/other/">Другое</a></li>
+	<li><a href="projects/">Проекты</a></li>
+</ul>
+			</nav>
+
+			<nav class="soc">
+				<ul>
+	<li><a href="#"><i class="fa fa-vk"></i></a></li> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-odnoklassniki"></i></a></li> <li><a href="#"><i class="fa fa-instagram"></i></a></li> <li><a href="rss.xml"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+
+		</div>
+	</footer>
+	<footer class="bottom-footer">
+		<div class="container text-center">
+			<div class="footer-copy">2018 © <span class="logo-footer logo-litera">Frontendly.ru</span></div>
+			<p>Копирование контента и размещение на других сайтах запрещено.</p>
+		</div>
+	</footer>
+
+	<script src="js/scripts.min.js"></script>
+
+	<script id="dsq-count-scr" src="//frontendly-ru.disqus.com/count.js" async></script>
+
+	<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+
+	<!--<script type="text/javascript" src="//vk.com/js/api/openapi.js?152"></script>-->
+	<!--<script type="text/javascript">-->
+	<!--VK.Widgets.Group("vk_groups", {mode: 0, width: 'auto,', height: '300', color2: '202222', color3: '202222'}, you_id);-->
+	<!--</script>-->
+
+</body>
+</html>

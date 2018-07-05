@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Frontendly</title>
+		<description>Cтатьи и новости из мира Front-end и программирования в целом</description>
+		<link>http://frontendly.ru</link>
+		<atom:link href="http://frontendly.ru/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Введение в CSS Grid</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/html-css/2018-05-25-vvedenie-v-css-grid.html"><img width="100%" src="http://frontendly.ruimages/html-css/2018/2018-05-25-vvedenie-v-css-grid/1.jpg"></a>
+					CSS Grid — первая реальная система построения сеток. Она предназначена для размещения контента как в столбцах, так и в строках, и, наконец, дает разработчикам почти неограниченный контроль над элементами на экране.
+					]]></description>
+				<pubDate>Fri, 25 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/html-css/2018-05-25-vvedenie-v-css-grid.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/html-css/2018-05-25-vvedenie-v-css-grid.html</guid>
+			</item>
+		
+			<item>
+				<title>Введение в каррирование в JavaScript</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html"><img width="100%" src="http://frontendly.ruimages/javascript/2018/2018-05-20-vvedenie-v-karrirovanie-v-javascript/1.jpg"></a>
+					Каррирование — очень интересная техника, позволяющая сильно упростить использование частичного применения на практике. Многие путают эти понятия, но, как вы увидите далее, они обозначают совершенно разные вещи.
+					]]></description>
+				<pubDate>Sun, 20 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/javascript/2018-05-20-vvedenie-v-karrirovanie-v-javascript.html</guid>
+			</item>
+		
+			<item>
+				<title>Мышление в стиле Ramda - первые шаги</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html"><img width="100%" src="http://frontendly.ruimages/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi/1.jpg"></a>
+					Данный пост — это начало серии статей «Мышление в стиле Ramda» о функциональном программировании, в которых проясняют на простых и ясных примерах способы написания кода в функциональном стиле с использованием библиотеки Ramda.
+					]]></description>
+				<pubDate>Sat, 19 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi.html</guid>
+			</item>
+		
+			<item>
+				<title>Мышление в стиле Ramda - частичное применение (каррирование)</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html"><img width="100%" src="http://frontendly.ruimages/javascript/2018/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2/1.jpg"></a>
+					Данный пост — это вторая часть серии статей о функциональном программировании под названием «Мышление в стиле Ramda».
+					]]></description>
+				<pubDate>Sat, 19 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/javascript/2018-05-19-myshlenie-v-stile-ramda-pervye-shagi-2.html</guid>
+			</item>
+		
+			<item>
+				<title>CSS цвета</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/html-css/2018-05-17-css-cveta.html"><img width="100%" src="http://frontendly.ruimages/html-css/2018/2018-05-17-css-cveta/1.jpg"></a>
+					Есть несколько способов для указания значения цвета, два наиболее распространенных из них это RGB и шестнадцатеричные значения...
+					]]></description>
+				<pubDate>Thu, 17 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/html-css/2018-05-17-css-cveta.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/html-css/2018-05-17-css-cveta.html</guid>
+			</item>
+		
+			<item>
+				<title>Как создать div блок с прокруткой?</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/html-css/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html.html"><img width="100%" src="http://frontendly.ruimages/html-css/2018/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html/1.jpg"></a>
+					В данной статье мы разберём вопрос создания блока (div) фиксированного размера с возможностью прокрутки по горизонтали и вертикали. Это можно реализовать средствами CSS. За это отвечает свойство overflow.
+					]]></description>
+				<pubDate>Wed, 16 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/html-css/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/html-css/2018-05-16-blok-s-prokruchivaemym-tekstom-s-pomoshchyu-css-i-html.html</guid>
+			</item>
+		
+			<item>
+				<title>JavaScript Async/Await за 10 минут</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html"><img width="100%" src="http://frontendly.ruimages/javascript/2018/2018-05-16-javascript-async-await-za-10-minut/1.jpg"></a>
+					В течение долгого времени разработчикам JavaScript приходилось полагаться на колбэки для работы с асинхронным кодом. В результате многие из нас испытали на себе то, что принятно называть &quot;callback hell&quot;
+					]]></description>
+				<pubDate>Wed, 16 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/javascript/2018-05-16-javascript-async-await-za-10-minut.html</guid>
+			</item>
+		
+			<item>
+				<title>Async function в JavaScript</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/javascript/2018-05-16-async-function.html"><img width="100%" src="http://frontendly.ruimages/javascript/2018/2018-05-16-async-function/1.jpg"></a>
+					Объявление async function определяет асинхронную функцию, которая возвращает объект AsyncFunction.Вы также можете  определить async-функции, используя  выражение async function.
+					]]></description>
+				<pubDate>Wed, 16 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/javascript/2018-05-16-async-function.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/javascript/2018-05-16-async-function.html</guid>
+			</item>
+		
+			<item>
+				<title>Производительный параллакс</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html"><img width="100%" src="http://frontendly.ruimages/html-css/2018/2018-05-15-proizvoditelnyy-parallaks/1.jpg"></a>
+					Любите вы параллакс или ненавидите его, но он никуда не денется. При разумном использовании он может добавить веб-приложению глубину и утонченность.
+					]]></description>
+				<pubDate>Tue, 15 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/html-css/2018-05-15-proizvoditelnyy-parallaks.html</guid>
+			</item>
+		
+			<item>
+				<title>Как создать адаптивную сетку</title>
+				<description><![CDATA[
+					<a href="http://frontendly.ru/blog/html-css/2018-05-14-kak-sozdat-adaptivnuyu-setku.html"><img width="100%" src="http://frontendly.ruimages/html-css/2018/2018-05-14-kak-sozdat-adaptivnuyu-setku/1.jpg"></a>
+					Адаптивная сетка — один из лучших инструментов для создания уникального дизайна.
+					]]></description>
+				<pubDate>Mon, 14 May 2018 00:00:00 +0300</pubDate>
+				<link>http://frontendly.ru/blog/html-css/2018-05-14-kak-sozdat-adaptivnuyu-setku.html</link>
+				<guid isPermaLink="true">http://frontendly.ru/blog/html-css/2018-05-14-kak-sozdat-adaptivnuyu-setku.html</guid>
+			</item>
+		
+	</channel>
+</rss>
